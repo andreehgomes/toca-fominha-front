@@ -1,25 +1,23 @@
 <div class="content">
   <mat-card class="card">
     <div class="card-container">
-        <div style="width: 30%;">
-            <img src="../../../assets/logo.jpg" width="100" height="100" />
+        <div class="logo">
+            <img src="../../../assets/logo.png" width="150" height="150"/>
         </div>      
-      <form class="example-form">
+      <form #form="ngForm" [formGroup]="formControlUsuario" (ngSubmit)="onSubmitLogin()" class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Celular</mat-label>
-          <input type="tel" matInput placeholder="00 00000-00" />
+          <input formControlName="celularFormGroup" type="tel" matInput placeholder="00 00000-00" />
         </mat-form-field>
-      </form>
-      <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Senha</mat-label>
-          <input type="password" matInput />
+          <input formControlName="senhaFormGroup" type="password" matInput />
         </mat-form-field>
+        <div class="botao">
+          <button mat-stroked-button color="primary" type="submit">Entrar</button>
+          <a mat-stroked-button target="_blank">Esqueci minha senha</a>
+        </div>
       </form>
-      <div class="botao">
-        <button mat-stroked-button color="primary">Entrar</button>
-        <a mat-stroked-button target="_blank">Esqueci minha senha</a>
-      </div>
     </div>
   </mat-card>
 </div>
