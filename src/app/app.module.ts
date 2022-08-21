@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,11 +9,16 @@ import { GlobalHttpInterceptor } from './core/http-handler/global-http.intercept
 import { LoaderComponent } from './components/loader/loader.component'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { GlobalErrorHandler } from './core/http-handler/global-error-handler';
+import { MatButtonModule } from '@angular/material/button';
+import { PageErrorComponent } from './feature/page-error/page-error.component';
+import { MatExpansionModule } from '@angular/material/expansion'
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoaderComponent
+    LoaderComponent,
+    PageErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -21,14 +26,13 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserAnimationsModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    MatDialogModule    
+    MatDialogModule,
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: GlobalHttpInterceptor,
-      multi: true
-    }
+    { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor,  multi: true },
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

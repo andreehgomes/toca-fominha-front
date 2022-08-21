@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PayloadLogin } from '../model/payload-login';
 import { Observable } from 'rxjs';
-import { ResponseLogin } from '../model/response-login';
+import { ResponseLoginToken } from '../model/response-login';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  autenticar(payload: PayloadLogin): Observable<PayloadLogin>{
-    return this.http.post<PayloadLogin>(`${environment.bff}/autenticar`, payload);
+  autenticar(payload: PayloadLogin): Observable<ResponseLoginToken>{
+    return this.http.post<ResponseLoginToken>(`${environment.bff}/autenticar`, payload);
   }
 }

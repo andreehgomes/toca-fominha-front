@@ -34,16 +34,28 @@ $toca-fominha-front-theme: mat-light-theme((
 @include angular-material-theme($toca-fominha-front-theme);
 
 /* You can add global styles to this file, and also import other style files */
-.content {
-    display: flex;
-    margin: 5px auto 5px;
-    padding: 0 16px;
-    max-width: 412px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+// .content {
+//     display: flex;
+//     margin: 5px auto 5px;
+//     padding: 0 16px;
+//     max-width: 412px;
+//     flex-direction: row;
+//     justify-content: center;
+//     align-items: center;
+//   }
 
+.content {
+  display: flex;
+  height: 100%;
+  margin: 5px auto 5px;
+  padding: 0 16px;
+  max-width: 412px;  
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -51,6 +63,11 @@ $toca-fominha-front-theme: mat-light-theme((
     justify-content: center;
     // margin-top: 16px;
   }
+
+.mat-dialog-container{
+    background-color: transparent;
+    box-shadow: none;
+}
 
 
   // footer {

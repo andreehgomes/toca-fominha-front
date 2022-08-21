@@ -5,4 +5,9 @@ export interface ResponseLogin {
     celular: string;
     time: string;
     status: Status;
+    auth: string;
+}
+
+export interface ResponseLoginToken {
+    token: string;
 }

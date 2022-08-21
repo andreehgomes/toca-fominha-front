@@ -8,15 +8,20 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
+import { LoaderService } from '../../components/loader/loader.service';
 
 @Injectable()
 export class GlobalHttpInterceptor implements HttpInterceptor {
-  constructor() {}
+
+  constructor(private loader: LoaderService) {}
 
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+
+    this.loader.openDialog();
+
     return next
     .handle(req)
     .pipe(
@@ -26,6 +31,7 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
         }),
         finalize(() => {
             console.log('Interceptor: ', req)
+            this.loader.closeDialog();
         })
     )
   }

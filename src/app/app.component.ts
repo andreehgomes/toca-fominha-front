@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RouterService } from './core/router/router.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,11 @@ import { Router } from '@angular/router';
 export class AppComponent  implements OnInit {
 
   constructor(
-    private router: Router
+    private router: RouterService
   ) { }
 
   ngOnInit(): void {
-    this.router.navigate(['login']);
+    this.router.navigate(this.router.route.LOGIN);
   }
 
 }
