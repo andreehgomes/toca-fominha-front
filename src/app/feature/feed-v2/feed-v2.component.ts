@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
 import { RouterService } from 'src/app/core/router/router.service';
 
 @Component({
@@ -9,12 +10,15 @@ import { RouterService } from 'src/app/core/router/router.service';
 export class FeedV2Component implements OnInit {
 
   openSideNav = false;
+  usuario: any;
 
   constructor(
-    private router: RouterService
+    private router: RouterService,
+    private auth: InitAuthService
   ) { }
 
   ngOnInit(): void {
+    this.usuario = this.auth.getToken();
   }
 
   openCloseSideNav(){

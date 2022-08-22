@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterService } from 'src/app/core/router/router.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,11 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  @Input() nomeUsuario: string;
+  @Input() usuario: any;
 
   openSideNav = false;
 
-  constructor() { }
+  constructor(
+    private router: RouterService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -22,9 +25,9 @@ export class ToolbarComponent implements OnInit {
     console.log('Depois: ', this.openSideNav);
   }
 
-  // logout(){
-  //   sessionStorage.setItem('logout', 's')
-  //   this.router.navigate(this.router.route.LOGIN)
-  // }
+  logout(){
+    sessionStorage.setItem('logout', 's')
+    this.router.navigate(this.router.route.LOGIN)
+  }
 
 }

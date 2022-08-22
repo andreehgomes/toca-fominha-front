@@ -1,5 +1,5 @@
 <div class="header">
-  <mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav-container class="sidenav-container" autosize>
     <mat-sidenav
       #sidenav
       class="example-sidenav"
@@ -7,7 +7,7 @@
       [opened]="openSideNav"
     >
       <mat-nav-list>
-        <mat-list-item class="parent">
+        <mat-list-item class="parent" (click)="logout()">
           <span class="full-width">Logout</span>
           <mat-icon mat-list-icon>logout</mat-icon>
         </mat-list-item>
@@ -27,7 +27,10 @@
     >
       <mat-icon>menu</mat-icon>
     </button>
-    <p>Eae, {{ nomeUsuario }}!!</p>
+    <div class="saudacao-usuario">
+      <p class="nome">Eae, {{usuario.nome}}!!</p>
+      <p>{{ usuario.time }}</p>
+    </div>
     <span class="spacer"></span>
   </mat-toolbar>
 </div>

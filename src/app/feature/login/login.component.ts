@@ -42,15 +42,13 @@ export class LoginComponent implements OnInit {
       celular: celularFormGroup.value,
       senha: senhaFormGroup.value,
     };
-    if(this.feedv1 == true){
-      this.autenticarv2(payload);
-    }else{
-      this.autenticarv2(payload)
-    }
+      this.autenticar(payload);
+    
   }
 
   initiByStorage() {
     const usuario = this.auth.getAuth();
+    console.log(usuario)
     if (usuario) {
       console.log(usuario);
       this.formControlUsuario.controls['celularFormGroup'].setValue(
@@ -70,19 +68,5 @@ export class LoginComponent implements OnInit {
       this.formControlUsuario.reset();
       this.formControlUsuario.enable();
     });
-  }
-
-  autenticarv2(payload: PayloadLogin) {
-    this.service.autenticar(payload).subscribe((res) => {
-      localStorage.setItem('token', res['token']);
-      this.router.navigate(this.router.route.FEEDV2);
-      this.formControlUsuario.reset();
-      this.formControlUsuario.enable();
-    });
-  }
-
-  onV2(){
-    this.feedv1 = false;
-    this.onSubmitLogin();
   }
 }

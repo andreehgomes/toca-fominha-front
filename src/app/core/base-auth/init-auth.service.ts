@@ -11,8 +11,8 @@ export class InitAuthService {
   getToken() {
     const login = localStorage.getItem('token');    
     if(!!login){
-      console.log('login', login)
-      return JSON.parse(atob(localStorage.getItem('token')));
+      console.log('login', JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('token'))))));
+      return JSON.parse(decodeURIComponent(escape(window.atob(localStorage.getItem('token')))));
     }
     return;
   }
@@ -20,7 +20,8 @@ export class InitAuthService {
   getAuth(): any {
     const auth = this.getToken();
     if(!!auth){
-      return JSON.parse(atob(auth['auth']))
+      
+      return JSON.parse(decodeURIComponent(encodeURIComponent(window.atob(auth['auth']))))
     }
     return;
   }
