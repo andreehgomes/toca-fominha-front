@@ -1,0 +1,73 @@
+{
+  "uuid": "f3d02304-4b20-4c9c-93eb-2103aa1f390f",
+  "lastMigration": 20,
+  "name": "Toca fominha",
+  "endpointPrefix": "",
+  "latency": 300,
+  "port": 3001,
+  "hostname": "192.168.1.5",
+  "routes": [
+    {
+      "uuid": "4c804c45-d1c9-4ac9-8380-f8374b60d14d",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "autenticar",
+      "responses": [
+        {
+          "uuid": "b4c51b31-152b-4649-ae13-be2497e864ae",
+          "body": "{\n  \"token\": \"ewogICAgIm5vbWUiOiAiQW5kcsOpIEZlbGlwZSBGZWzDrWNpbyBHb21lcyIsCiAgICAiY2VsdWxhciI6ICI0Mzk5OTg5OTkxOCIsCiAgICAidGltZSI6ICJUb2NhIEZvbWluaGEiLAogICAgInN0YXR1cyI6ICJhIiwKICAgICJhdXRoIjogImV5SmpaV3gxYkdGeUlqb2dJalF6T1RrNU9EazVPVEU0SWl3aWMyVnVhR0VpT2lBaU1USXpORFUyTnpnNUluMD0iCn0=\"\n}",
+          "latency": 1000,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}
