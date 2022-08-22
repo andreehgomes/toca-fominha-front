@@ -16,6 +16,11 @@ const routes: Routes = [
     path: 'feed',
     loadChildren: () =>
       import('../app/feature/feed/feed.module').then((m) => m.FeedModule)
+  },
+  {
+    path: 'feed-v2',
+    loadChildren: () =>
+      import('../app/feature/feed-v2/feed-v2.module').then((m) => m.FeedV2Module)
   }
 ];
 

@@ -1,0 +1,28 @@
+.mat-toolbar {
+  padding: 0;
+  background-color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.example-container {
+  height: 100%;
+  // border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.mat-drawer-container {
+  position: absolute;
+  background-color: transparent;
+  margin-left: -19px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}

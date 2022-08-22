@@ -1,0 +1,32 @@
+<div class="content">
+  <div class="containers header">
+    <app-toolbar
+    nomeUsuario="André"></app-toolbar>
+    <!-- <mat-toolbar>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        (click)="openCloseSideNav()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <p>Eae, André!!</p>
+      <span class="spacer"></span>
+    </mat-toolbar> -->
+  </div>
+
+  <div class="containers body">
+    <mat-sidenav-container class="example-container" autosize>
+      <mat-sidenav #sidenav class="example-sidenav" mode="side" [opened]="openSideNav">
+        <mat-nav-list>
+          <mat-list-item class="parent" (click)="logout()">
+            <span class="full-width">Logout</span>
+            <mat-icon mat-list-icon>logout</mat-icon>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-sidenav>
+    </mat-sidenav-container>
+    <p>Feed Works</p>
+  </div>
+</div>

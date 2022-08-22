@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterService } from 'src/app/core/router/router.service';
 
 @Component({
   selector: 'app-feed',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: RouterService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    sessionStorage.setItem('logout', 's')
+    this.router.navigate(this.router.route.LOGIN)
   }
 
 }

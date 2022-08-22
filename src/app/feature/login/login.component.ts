@@ -14,6 +14,7 @@ import { LoginService } from './shared/service/login.service';
 export class LoginComponent implements OnInit {
   token64: string | null;
   token: ResponseLogin | undefined;
+  feedv1 = true;
 
   constructor(
     private service: LoginService,
@@ -27,7 +28,10 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.initiByStorage();
+    const logout = sessionStorage.getItem('logout');
+    if (logout != 's') {
+      this.initiByStorage();
+    }
   }
 
   onSubmitLogin() {
@@ -38,7 +42,11 @@ export class LoginComponent implements OnInit {
       celular: celularFormGroup.value,
       senha: senhaFormGroup.value,
     };
-    this.autenticar(payload);
+    if(this.feedv1 == true){
+      this.autenticarv2(payload);
+    }else{
+      this.autenticarv2(payload)
+    }
   }
 
   initiByStorage() {
@@ -58,9 +66,23 @@ export class LoginComponent implements OnInit {
   autenticar(payload: PayloadLogin) {
     this.service.autenticar(payload).subscribe((res) => {
       localStorage.setItem('token', res['token']);
-      this.router.navigate(this.router.route.FEED);
+      this.router.navigate(this.router.route.FEEDV2);
       this.formControlUsuario.reset();
       this.formControlUsuario.enable();
     });
+  }
+
+  autenticarv2(payload: PayloadLogin) {
+    this.service.autenticar(payload).subscribe((res) => {
+      localStorage.setItem('token', res['token']);
+      this.router.navigate(this.router.route.FEEDV2);
+      this.formControlUsuario.reset();
+      this.formControlUsuario.enable();
+    });
+  }
+
+  onV2(){
+    this.feedv1 = false;
+    this.onSubmitLogin();
   }
 }

@@ -14,6 +14,7 @@ export class AppComponent  implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    sessionStorage.setItem('logout', 'n');
     this.router.navigate(this.router.route.LOGIN);
   }
 
