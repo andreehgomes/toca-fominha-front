@@ -1,5 +1,5 @@
 {
-  "uuid": "f3d02304-4b20-4c9c-93eb-2103aa1f390f",
+  "uuid": "08da7f16-35d9-4786-a0ff-59d28034f426",
   "lastMigration": 20,
   "name": "Toca fominha",
   "endpointPrefix": "",
@@ -8,13 +8,13 @@
   "hostname": "192.168.1.5",
   "routes": [
     {
-      "uuid": "4c804c45-d1c9-4ac9-8380-f8374b60d14d",
+      "uuid": "38ae8ebf-5631-486b-bf83-d0675b6a2bc9",
       "documentation": "",
       "method": "post",
       "endpoint": "autenticar",
       "responses": [
         {
-          "uuid": "b4c51b31-152b-4649-ae13-be2497e864ae",
+          "uuid": "3f219440-8e93-4093-b83d-0344d9f8f543",
           "body": "{\n  \"token\": \"ewogICAgIm5vbWUiOiAiQW5kcsOpIEZlbGlwZSBGZWzDrWNpbyBHb21lcyIsCiAgICAiY2VsdWxhciI6ICI0Mzk5OTg5OTkxOCIsCiAgICAidGltZSI6ICJUb2NhIEZvbWluaGEiLAogICAgInN0YXR1cyI6ICJhIiwKICAgICJhdXRoIjogImV5SmpaV3gxYkdGeUlqb2dJalF6T1RrNU9EazVPVEU0SWl3aWMyVnVhR0VpT2lBaU1USXpORFUyTnpnNUluMD0iCn0=\"\n}",
           "latency": 1000,
           "statusCode": 200,
