@@ -1,17 +1,18 @@
 .content {
     flex-direction: column;
+    justify-content: flex-start;
     background-color: white;
-    width: 90%;
+    width: 100%;
   }
   
   .containers {
     width: 100%;
-    height: max-content;
-    min-height: 10%;
-    padding: 7px;
-    border-radius: 4px;
+    // height: max-content;
+    min-height: 15%;
+    // padding: 7px;
+    // border-radius: 4px;
     background-color: white;
-    border: 1px solid #eee;
+    // border: 1px solid #eee;
     display: flex;
   }
   
@@ -61,7 +62,17 @@
   }
   
   .body {
-    height: 90%;
+    height: 85%;
+    background-color: rgb(235, 232, 232);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feed {
+    width: 95%;
+    padding: 5px;
+    margin-top: -20px;
   }
   
   p {
@@ -76,7 +87,7 @@
 
   app-toolbar {
     margin-bottom: 5px;
-    padding: 0 7px !important;
+    // padding: 0 7px !important;
   }  
 
   

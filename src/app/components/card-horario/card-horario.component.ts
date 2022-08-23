@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Horario } from 'src/app/shared/model/horario-model';
 
 @Component({
   selector: 'card-horario',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardHorarioComponent implements OnInit {
 
+  @Input() horario: Horario;
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.horario)
   }
 
 }

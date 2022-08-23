@@ -1,23 +1,10 @@
 <div class="content">
-
     <app-toolbar class="containers"
-    [usuario]="usuario"></app-toolbar>
-  
+    [usuario]="usuario"></app-toolbar>  
 
   <div class="containers body">
-    <mat-sidenav-container class="example-container" autosize>
-      <mat-sidenav #sidenav class="example-sidenav" mode="side" [opened]="openSideNav">
-        <mat-nav-list>
-          <mat-list-item class="parent" (click)="logout()">
-            <span class="full-width">Logout</span>
-            <mat-icon mat-list-icon>logout</mat-icon>
-          </mat-list-item>
-        </mat-nav-list>
-      </mat-sidenav>
-    </mat-sidenav-container>
-
-    <div style="width: 100%;">
-      <card-horario></card-horario>
+    <div class="feed">
+      <card-horario *ngFor="let horario of horarios" [horario]="horario"></card-horario>
     </div>
   </div>
 </div>

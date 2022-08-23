@@ -1,4 +1,4 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, ErrorHandler, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,8 +9,10 @@ import { GlobalHttpInterceptor } from './core/http-handler/global-http.intercept
 import { LoaderComponent } from './components/loader/loader.component'
 import { GlobalErrorHandler } from './core/http-handler/global-error-handler';
 import { PageErrorComponent } from './feature/page-error/page-error.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import localePt from '@angular/common/locales/pt';
+import {registerLocaleData} from '@angular/common';
 
+registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor,  multi: true },
-    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    { provide: ErrorHandler, useClass: GlobalErrorHandler },
+    { provide: LOCALE_ID, useValue: 'pt-br' },
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' }
   ],
   bootstrap: [AppComponent]
 })

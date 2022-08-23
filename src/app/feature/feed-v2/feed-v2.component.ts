@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
 import { RouterService } from 'src/app/core/router/router.service';
+import { Horario } from 'src/app/shared/model/horario-model';
+import { HorariosService } from 'src/app/shared/service/horarios.service';
 
 @Component({
   selector: 'app-feed-v2',
@@ -11,25 +13,21 @@ export class FeedV2Component implements OnInit {
 
   openSideNav = false;
   usuario: any;
+  horarios: Array<Horario> = [];
 
   constructor(
     private router: RouterService,
-    private auth: InitAuthService
+    private auth: InitAuthService,
+    private horarioService: HorariosService
   ) { }
 
   ngOnInit(): void {
     this.usuario = this.auth.getToken();
+    if(!!this.usuario){
+      console.log('entrou')
+      this.horarioService.getHorarios(this.usuario.equipe).subscribe((res) => {
+        this.horarios = res;
+      })
+    }
   }
-
-  openCloseSideNav(){
-    console.log('Antes: ', this.openSideNav);
-    this.openSideNav = !this.openSideNav;
-    console.log('Depois: ', this.openSideNav);
-  }
-
-  logout(){
-    sessionStorage.setItem('logout', 's')
-    this.router.navigate(this.router.route.LOGIN)
-  }
-
 }
