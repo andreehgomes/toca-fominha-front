@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-card-horario',
+  selector: 'card-horario',
   templateUrl: './card-horario.component.html',
   styleUrls: ['./card-horario.component.scss']
 })
