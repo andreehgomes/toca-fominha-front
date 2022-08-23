@@ -30,4 +30,8 @@ export class ToolbarComponent implements OnInit {
     this.router.navigate(this.router.route.LOGIN)
   }
 
+  home(){
+    this.router.navigate(this.router.route.FEEDV2);
+  }
+
 }

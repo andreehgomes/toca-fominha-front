@@ -5,6 +5,7 @@ import { FeedRoutingModule } from './feed-v2-routing.module';
 import { MaterialModule } from '../../material.module';
 import { ToolbarModule } from '../../components/toolbar/toolbar.module';
 import { CardHorarioModule } from '../../components/card-horario/card-horario.module'
+import { FooterModule } from '../../components/footer/footer.module';
 
 @NgModule({
   declarations: [FeedV2Component],
@@ -13,7 +14,8 @@ import { CardHorarioModule } from '../../components/card-horario/card-horario.mo
     FeedRoutingModule,
     MaterialModule,
     ToolbarModule,
-    CardHorarioModule
+    CardHorarioModule,
+    FooterModule
   ],  
 })
 export class FeedV2Module {}

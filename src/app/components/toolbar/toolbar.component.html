@@ -7,6 +7,10 @@
       [opened]="openSideNav"
     >
       <mat-nav-list>
+        <mat-list-item class="parent" (click)="home()">
+          <span class="full-width">Home</span>
+          <mat-icon mat-list-icon>home</mat-icon>
+        </mat-list-item>
         <mat-list-item class="parent" (click)="logout()">
           <span class="full-width">Logout</span>
           <mat-icon mat-list-icon>logout</mat-icon>

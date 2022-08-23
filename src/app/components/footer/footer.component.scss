@@ -1,0 +1,30 @@
+.header {
+    width: 100%;
+}
+.mat-toolbar {
+  padding: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+//   padding-top: 10px;
+  height: 7vh !important;
+  max-height: 7vh !important;
+}
+
+::ng-deep mat-toolbar.mat-toolbar-row,.mat-toolbar-single-row {
+  width: 100%;
+}
+
+.footer {
+  min-height: 0% !important;
+}
+
+::ng-deep app-footer.containers {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  max-width: 412px;
+  min-height: 0% !important;
+}
