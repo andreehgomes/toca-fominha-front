@@ -10,18 +10,29 @@ const routes: Routes = [
   {
     path: 'error',
     loadChildren: () =>
-      import('../app/feature/page-error/page-error.module').then((m) => m.PageErrorModule),
+      import('../app/feature/page-error/page-error.module').then(
+        (m) => m.PageErrorModule
+      ),
   },
   {
     path: 'feed',
     loadChildren: () =>
-      import('../app/feature/feed/feed.module').then((m) => m.FeedModule)
+      import('../app/feature/feed/feed.module').then((m) => m.FeedModule),
   },
   {
     path: 'feed-v2',
     loadChildren: () =>
-      import('../app/feature/feed-v2/feed-v2.module').then((m) => m.FeedV2Module)
-  }
+      import('../app/feature/feed-v2/feed-v2.module').then(
+        (m) => m.FeedV2Module
+      ),
+  },
+  {
+    path: 'new-password',
+    loadChildren: () =>
+      import('../app/feature/new-password/new-password.module').then(
+        (m) => m.NewPasswordModule
+      ),
+  },
 ];
 
 @NgModule({

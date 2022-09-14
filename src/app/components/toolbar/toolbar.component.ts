@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { RouterEnum } from 'src/app/core/router/router.enum';
 import { RouterService } from 'src/app/core/router/router.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { RouterService } from 'src/app/core/router/router.service';
 export class ToolbarComponent implements OnInit {
 
   @Input() usuario: any;
-
   openSideNav = false;
+  routes = RouterEnum;
 
   constructor(
     private router: RouterService
@@ -32,6 +33,10 @@ export class ToolbarComponent implements OnInit {
 
   home(){
     this.router.navigate(this.router.route.FEEDV2);
+  }
+
+  goTo(route: string){
+    this.router.navigate(route);
   }
 
 }

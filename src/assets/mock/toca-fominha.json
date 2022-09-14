@@ -5,7 +5,7 @@
   "endpointPrefix": "",
   "latency": 300,
   "port": 3001,
-  "hostname": "192.168.1.5",
+  "hostname": "192.168.1.3",
   "routes": [
     {
       "uuid": "38ae8ebf-5631-486b-bf83-d0675b6a2bc9",
@@ -16,6 +16,37 @@
         {
           "uuid": "3f219440-8e93-4093-b83d-0344d9f8f543",
           "body": "{\n  \"token\": \"ewogICAgIm5vbWUiOiAiQW5kcsOpIEdvbWVzIiwKICAgICJjZWx1bGFyIjogIjQzOTk5ODk5OTE4IiwKICAgICJ0aW1lIjogIlRvY2EgRm9taW5oYSIsCiAgICAic3RhdHVzIjogImEiLAogICAgImF1dGgiOiAiZXlKalpXeDFiR0Z5SWpvZ0lqUXpPVGs1T0RrNU9URTRJaXdpYzJWdWFHRWlPaUFpTVRJek5EVTJOemc1SW4wPSIKfQ==\"\n}",
+          "latency": 1000,
+          "statusCode": 200,
+          "label": "",
+          "headers": [
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            }
+          ],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "6db097e5-4e49-4f31-a082-3f11fe7a40f8",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "nova-senha",
+      "responses": [
+        {
+          "uuid": "24fde96a-a916-442c-8e7c-5ad012f799a2",
+          "body": "{\n  \"code\": \"200\",\n  \"message\": \"Senha cadastrada com sucesso.\"\n}",
           "latency": 1000,
           "statusCode": 200,
           "label": "",

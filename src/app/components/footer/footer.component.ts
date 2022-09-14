@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { RouterEnum } from 'src/app/core/router/router.enum';
+import { RouterService } from 'src/app/core/router/router.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  route = RouterEnum;
+  @Input() rotaBotaoHome: RouterEnum;
+
+  constructor(private router: RouterService) { }
 
   ngOnInit(): void {
+  }
+
+  goTo(){
+    this.router.navigate(this.rotaBotaoHome);
   }
 
 }

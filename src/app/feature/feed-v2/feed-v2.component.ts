@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
+import { RouterEnum } from 'src/app/core/router/router.enum';
 import { RouterService } from 'src/app/core/router/router.service';
 import { Horario } from 'src/app/shared/model/horario-model';
 import { HorariosService } from 'src/app/shared/service/horarios.service';
@@ -11,6 +12,7 @@ import { HorariosService } from 'src/app/shared/service/horarios.service';
 })
 export class FeedV2Component implements OnInit {
 
+  route = RouterEnum;
   openSideNav = false;
   usuario: any;
   horarios: Array<Horario> = [];

@@ -11,7 +11,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     let mensagemTecnica = error;
     setTimeout(() => {
       if(error.message){
-        console.log('Handler Error Object: ', JSON.stringify(error))
+        console.log('Handler Error Object: ', (error))
         mensagemTecnica = error.message;
       }
       console.log('Handler Error: ', error);

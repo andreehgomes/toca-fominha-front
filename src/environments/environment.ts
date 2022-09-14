@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  bff: 'http://192.168.1.5:3001' 
+  bff: 'http://192.168.1.3:3001' 
 };
 
 /*

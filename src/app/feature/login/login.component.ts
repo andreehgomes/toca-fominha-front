@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { ɵangular_packages_platform_browser_dynamic_testing_testing_a } from '@angular/platform-browser-dynamic/testing';
 import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
 import { RouterService } from 'src/app/core/router/router.service';
 import { PayloadLogin } from './shared/model/payload-login';
@@ -68,5 +69,9 @@ export class LoginComponent implements OnInit {
       this.formControlUsuario.reset();
       this.formControlUsuario.enable();
     });
+  }
+
+  newPassword(){
+    this.router.navigate(this.router.route.NEW_PASSWORD);
   }
 }
