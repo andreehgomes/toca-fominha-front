@@ -11,12 +11,29 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule, } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { FooterModule } from './components/footer/footer.module';
+import { ToolbarModule } from './components/toolbar/toolbar.module';
+
+//Formatos para ajustar input de data datepicker
+const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'MM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [],
-  imports: [],
+  imports: [
+  ],
   exports: [
     CommonModule,
     MatProgressSpinnerModule,
@@ -31,8 +48,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatFormFieldModule,
     MatDatepickerModule,
-    MatNativeDateModule
-
+    MatNativeDateModule,
+    MatMomentDateModule,
   ],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
+ ]
 })
 export class MaterialModule {}

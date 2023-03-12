@@ -1,19 +1,25 @@
 <div class="content">
   <app-toolbar class="containers" [usuario]="usuario"></app-toolbar>
+
   <div class="example-form">
     <card-alert
-      *ngIf="mensagemNewPass?.codigo != null"
-      tipo="{{ mensagemNewPass.tipo }}"
-      codigo="{{ mensagemNewPass.codigo }}"
-      mensagem="{{ mensagemNewPass.mensagem }}"
+      *ngIf="mensagemRespostaCadastro?.codigo != null"
+      tipo="{{ mensagemRespostaCadastro.tipo }}"
+      codigo="{{ mensagemRespostaCadastro.codigo }}"
+      mensagem="{{ mensagemRespostaCadastro.mensagem }}"
     ></card-alert>
   </div>
+
   <form
-    [formGroup]="formControlNewPass"
+    [formGroup]="formControlNewAccount"
     (ngSubmit)="onSubmit()"
     class="example-form"
     #formDirective="ngForm"
   >
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nome completo</mat-label>
+      <input matInput formControlName="nome" matInput />
+    </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Celular</mat-label>
       <input
@@ -64,10 +70,18 @@
       </button>
     </mat-form-field>
     <div class="botao">
-      <button mat-stroked-button color="primary" type="submit" [disabled]="formControlNewPass.invalid">Salvar</button>
-      <a mat-stroked-button color="_blank" type="button" (click)="zerarForm()">Cancelar</a>
+      <button
+        mat-stroked-button
+        color="primary"
+        type="submit"
+        [disabled]="formControlNewAccount.invalid"
+      >
+        Salvar
+      </button>
+      <a mat-stroked-button color="_blank" type="button" (click)="zerarForm()"
+        >Cancelar</a
+      >
     </div>
   </form>
-
   <app-footer [rotaBotaoHome]="route.LOGIN" class="containers"></app-footer>
 </div>

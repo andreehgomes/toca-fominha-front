@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ɵangular_packages_platform_browser_dynamic_testing_testing_a } from '@angular/platform-browser-dynamic/testing';
+import { Subscription } from 'rxjs';
 import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
 import { RouterService } from 'src/app/core/router/router.service';
+import { AlertaModel } from 'src/app/shared/model/alertas-model';
 import { PayloadLogin } from './shared/model/payload-login';
 import { ResponseLogin } from './shared/model/response-login';
 import { LoginService } from './shared/service/login.service';
@@ -17,6 +19,10 @@ export class LoginComponent implements OnInit {
   token: ResponseLogin | undefined;
   feedv1 = true;
 
+  mensagemRespostaLogin: AlertaModel = new AlertaModel();
+  subscribeLogin: Subscription;
+  subscribeMensagem: Subscription;
+
   constructor(
     private service: LoginService,
     private auth: InitAuthService,
@@ -29,10 +35,10 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    const logout = sessionStorage.getItem('logout');
-    if (logout != 's') {
-      this.initiByStorage();
-    }
+    // const logout = sessionStorage.getItem('logout');
+    // if (logout != 's') {
+    //   this.initiByStorage();
+    // }
   }
 
   onSubmitLogin() {
@@ -63,15 +69,37 @@ export class LoginComponent implements OnInit {
   }
 
   autenticar(payload: PayloadLogin) {
-    this.service.autenticar(payload).subscribe((res) => {
-      localStorage.setItem('token', res['token']);
-      this.router.navigate(this.router.route.FEEDV2);
+   this.service.autenticar(payload).then(() => {
+    this.service.behaviorUsuarioLogado.subscribe((logado) => {
+      if(logado){
+        this.mensagemRespostaLogin = null;
+      }else{
+        this.service.behaviorLoginMensagem.subscribe((mensagem) => {
+          if(mensagem){
+            this.mensagemRespostaLogin = mensagem;
+          }
+        })
+        this.subscribeMensagem?.unsubscribe();
+      }
+    });
+    this.subscribeLogin?.unsubscribe();
+   });
+   
+      // this.router.navigate(this.router.route.FEEDV2);
       this.formControlUsuario.reset();
       this.formControlUsuario.enable();
-    });
+    
   }
 
   newPassword(){
     this.router.navigate(this.router.route.NEW_PASSWORD);
   }
+  newAccoumt(){
+    this.router.navigate(this.router.route.NEW_ACCOUNT);
+  }
+
+  goTo(rota: string){
+    this.router.navigate(rota);
+  }
+
 }

@@ -6,6 +6,7 @@ import { MaterialModule } from '../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FooterModule } from '../../components/footer/footer.module';
 import { ToolbarModule } from 'src/app/components/toolbar/toolbar.module';
+import { CardAlertModule } from 'src/app/components/card-alert/card-alert.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ToolbarModule } from 'src/app/components/toolbar/toolbar.module';
     FormsModule,
     ReactiveFormsModule,
     FooterModule,
-    ToolbarModule
+    ToolbarModule,
+    CardAlertModule
   ]
 })
 export class NewPasswordModule { }

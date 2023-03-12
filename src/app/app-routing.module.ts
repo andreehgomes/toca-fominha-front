@@ -33,6 +33,13 @@ const routes: Routes = [
         (m) => m.NewPasswordModule
       ),
   },
+  {
+    path: 'new-account',
+    loadChildren: () =>
+      import('../app/feature/new-account/new-account.module').then(
+        (m) => m.NewAccountModule
+      ),
+  }
 ];
 
 @NgModule({

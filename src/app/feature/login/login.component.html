@@ -1,22 +1,51 @@
 <div class="content">
   <mat-card class="card">
     <div class="card-container">
-        <div class="logo">
-            <img src="../../../assets/imagens/logo.png" width="150" height="150" alt="Logo Toca-Fominha"/>
-        </div>      
-      <form #form="ngForm" [formGroup]="formControlUsuario" (ngSubmit)="onSubmitLogin()" class="example-form">
+      <div class="logo">
+        <img
+          src="../../../assets/imagens/logo.png"
+          width="150"
+          height="150"
+          alt="Logo Toca-Fominha"
+        />
+      </div>
+      <div class="example-form card-alert">
+        <card-alert
+          *ngIf="mensagemRespostaLogin?.codigo != null"
+          tipo="{{ mensagemRespostaLogin.tipo }}"
+          codigo="{{ mensagemRespostaLogin.codigo }}"
+          mensagem="{{ mensagemRespostaLogin.mensagem }}"
+        ></card-alert>
+      </div>
+      <form
+        #form="ngForm"
+        [formGroup]="formControlUsuario"
+        (ngSubmit)="onSubmitLogin()"
+        class="example-form"
+      >
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Celular</mat-label>
-          <input formControlName="celularFormGroup" type="tel" matInput placeholder="00 00000-00" />
+          <input
+            formControlName="celularFormGroup"
+            type="tel"
+            matInput
+            placeholder="00 00000-00"
+          />
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Senha</mat-label>
           <input formControlName="senhaFormGroup" type="password" matInput />
         </mat-form-field>
         <div class="botao">
-          <button mat-stroked-button color="primary" type="submit">Entrar</button>
-          <a mat-stroked-button target="_blank" (click)="newPassword()">Esqueci minha senha</a>
-          <a mat-stroked-button target="_blank">Criar uma conta</a>
+          <button mat-stroked-button color="primary" type="submit">
+            Entrar
+          </button>
+          <a mat-stroked-button target="_blank" (click)="newPassword()"
+            >Esqueci minha senha</a
+          >
+          <a mat-stroked-button target="_blank" (click)="newAccoumt()"
+            >Criar uma conta</a
+          >
         </div>
       </form>
     </div>

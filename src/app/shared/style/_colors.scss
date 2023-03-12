@@ -1,0 +1,51 @@
+$c-primary: #695853;
+$c-primary-light: #706662;
+$c-primary-light-card: #f0f0f0;
+// $c-secondary: #8bc34a;
+$c-secondary: #1B6942;
+$c-secondary-light: #50886c;
+$c-background: #ebe9e8;
+$c-white: #fff;
+$c-white-alert-border: rgb(212, 212, 212);
+$c-red: #e42a1d;
+$c-red-alert: #721c24;
+$c-red-alert-light: #f8d7da;
+$c-red-alert-border: #f5c6cb;
+$c-yellow-alert-ligth: #FFECB3;
+$c-yellow-alert:#FF6F00;
+$c-yellow-alert-border: #FFC107;
+$c-blue-alert-light: #E3F2FD;
+$c-blue-alert:#3174da;
+$c-blue-alert-border: #64B5F6;
+$c-green-alert-light: #ebfde3;
+$c-green-alert:#297000;
+$c-green-alert-border: #92f664;
+
+
+.c-primary {
+  background-color: $c-primary;
+}
+
+.c-primary-light {
+  background-color: $c-primary-light;
+}
+
+.c-secondary {
+  background-color: $c-secondary;
+}
+
+.c-background {
+  background-color: $c-background;
+}
+
+.c-white {
+  background-color: $c-white;
+}
+
+.c-red {
+  background-color: $c-red;
+}
+
+.c-yellow {
+  background-color: $c-yellow-alert-ligth;
+}

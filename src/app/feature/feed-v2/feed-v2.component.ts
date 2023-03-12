@@ -26,7 +26,6 @@ export class FeedV2Component implements OnInit {
   ngOnInit(): void {
     this.usuario = this.auth.getToken();
     if(!!this.usuario){
-      console.log('entrou')
       this.horarioService.getHorarios(this.usuario.equipe).subscribe((res) => {
         this.horarios = res;
       })
