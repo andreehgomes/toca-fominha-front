@@ -14,7 +14,7 @@ export class ToolbarComponent implements OnInit {
   routes = RouterEnum;
 
   constructor(
-    private router: RouterService
+    private router: RouterService,
   ) { }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ɵangular_packages_platform_browser_dynamic_testing_testing_a } from '@angular/platform-browser-dynamic/testing';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { LoginService } from './shared/service/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   token64: string | null;
   token: ResponseLogin | undefined;
   feedv1 = true;
@@ -104,6 +104,10 @@ export class LoginComponent implements OnInit {
 
   goTo(rota: string){
     this.router.navigate(rota);
+  }
+
+  ngOnDestroy(): void {
+    this.service.behaviorUsuarioLogado.next(null);
   }
 
 }
