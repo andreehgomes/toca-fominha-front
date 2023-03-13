@@ -53,6 +53,7 @@ export class NewPasswordComponent implements OnInit {
       this.newPassService.behaviorMensagemNewPass.subscribe((mensagem) => {
         if (mensagem) {
           this.mensagemNewPass = mensagem;
+          localStorage.removeItem("token");
           this.zerarForm();
         }
       });

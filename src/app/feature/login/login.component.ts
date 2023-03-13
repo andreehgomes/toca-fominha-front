@@ -35,10 +35,10 @@ export class LoginComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    // const logout = sessionStorage.getItem('logout');
-    // if (logout != 's') {
-    //   this.initiByStorage();
-    // }
+    const logout = sessionStorage.getItem('logout');
+    if (logout != 's') {
+      this.initiByStorage();
+    }
   }
 
   onSubmitLogin() {
@@ -54,17 +54,19 @@ export class LoginComponent implements OnInit {
   }
 
   initiByStorage() {
-    const usuario = this.auth.getAuth();
+    const usuario = this.auth.getToken();
     console.log(usuario)
     if (usuario) {
-      console.log(usuario);
       this.formControlUsuario.controls['celularFormGroup'].setValue(
         usuario.celular
       );
       this.formControlUsuario.controls['senhaFormGroup'].setValue(
-        usuario.senha
+        btoa(usuario.senha)
       );
-      this.autenticar(usuario);
+      this.autenticar({
+        celular: usuario.celular,
+        senha: atob(usuario.senha)
+      });
     }
   }
 
@@ -72,6 +74,8 @@ export class LoginComponent implements OnInit {
    this.service.autenticar(payload).then(() => {
     this.service.behaviorUsuarioLogado.subscribe((logado) => {
       if(logado){
+        localStorage.setItem("token", btoa(JSON.stringify(logado)));
+        this.router.navigate(this.router.route.FEEDV2);
         this.mensagemRespostaLogin = null;
       }else{
         this.service.behaviorLoginMensagem.subscribe((mensagem) => {

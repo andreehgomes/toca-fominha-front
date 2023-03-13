@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  bff: 'http://192.168.1.4:3001',
+  bff: 'http://192.168.1.9:3001',
   firebaseConfig: {
     apiKey: "AIzaSyAuykiSP5JWTFGvxajRuhXNkg47bMthZqE",
     authDomain: "toca-fominha.firebaseapp.com",

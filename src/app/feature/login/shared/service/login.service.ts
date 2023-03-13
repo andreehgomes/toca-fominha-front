@@ -71,6 +71,8 @@ export class LoginService {
   }
 
   checkPass(passInput: string, passReturn: string): boolean {
+    // console.log("passInput: ", passInput);
+    // console.log("passReturn: ", atob(passReturn));
     return passInput == atob(passReturn);
   }
 }
