@@ -12,7 +12,7 @@ export class HorariosService {
 
   constructor(private http: HttpClient) { }
 
-  getHorarios(equipe: Equipe): Observable<Horario[]>{
-    return this.http.get<Horario[]>(`${environment.bff}/horarios`);
-  }
+  // getHorarios(equipe: Equipe): Observable<Horario[]>{
+  //   return this.http.get<Horario[]>(`${environment.bff}/horarios`);
+  // }
 }

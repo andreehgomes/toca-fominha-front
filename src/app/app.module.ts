@@ -15,6 +15,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore'; 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
+import config from '../assets/config.json';
 
 registerLocaleData(localePt, 'pt');
 
@@ -31,7 +32,7 @@ registerLocaleData(localePt, 'pt');
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(config.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
   ],
