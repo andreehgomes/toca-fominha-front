@@ -1,3 +1,4 @@
+@import '../../shared/style/colors';
 .content {
     flex-direction: column;
     justify-content: flex-start;
@@ -58,7 +59,7 @@
   }
   
   .body {
-    height: 85%;
+    height: 100%;
     background-color: rgb(235, 232, 232);
     display: flex;
     flex-direction: column;
@@ -107,4 +108,15 @@
   ::ng-deep .mat-tab-body-wrapper {
     height: 100%;
     padding: 15px 24px;
+  }
+
+  ::ng-deep .mat-tab-header {
+    background-color: white !important;
+  }
+  ::ng-deep .mat-tab-header .mat-tab-label {
+    color: $c-primary !important;
+  }
+
+  ::ng-deep mat-ink-bar {
+    background-color: $c-primary !important;
   }
