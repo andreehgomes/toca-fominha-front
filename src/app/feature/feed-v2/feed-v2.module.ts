@@ -6,6 +6,9 @@ import { MaterialModule } from '../../material.module';
 import { ToolbarModule } from '../../components/toolbar/toolbar.module';
 import { CardHorarioModule } from '../../components/card-horario/card-horario.module'
 import { FooterModule } from '../../components/footer/footer.module';
+import { TreinosModule } from '../treinos/treinos.module'
+import { FinanceiroModule } from '../financeiro/financeiro.module';
+import { PerfilModule } from '../perfil/perfil.module';
 
 @NgModule({
   declarations: [FeedV2Component],
@@ -15,7 +18,10 @@ import { FooterModule } from '../../components/footer/footer.module';
     MaterialModule,
     ToolbarModule,
     CardHorarioModule,
-    FooterModule
+    FooterModule,
+    TreinosModule,
+    FinanceiroModule,
+    PerfilModule
   ],  
 })
 export class FeedV2Module {}

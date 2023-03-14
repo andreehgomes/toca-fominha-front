@@ -9,5 +9,4 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(`${__dirname}/dist/${appName}/index.html`));
 });
 
-//ouvir a porta que o Heroku disponibilizar
 app.listen(process.env.PORT);

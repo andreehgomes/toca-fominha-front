@@ -1,21 +1,18 @@
 <div class="content">
-    <app-toolbar class="containers"
-    [usuario]="usuario"></app-toolbar>  
+  <app-toolbar class="containers" [usuario]="usuario"></app-toolbar>
 
-  <div class="containers body" style="justify-content: center;">
-    <div class="feed">
-      <!-- <card-horario *ngFor="let horario of horarios" [horario]="horario"></card-horario> -->
-      <div class="logo">
-        <img
-          src="../../../assets/imagens/em-construcao.png"
-          width="150"
-          height="150"
-          alt="Logo Toca-Fominha"
-        />
-        <p class="construcao">Em construção!!!</p>
-      </div>
-    </div>
+  <div class="containers body">
+    <mat-tab-group>
+      <mat-tab label="Treino">
+        <treinos></treinos>
+      </mat-tab>
+      <mat-tab label="Mensalidade">
+        <financeiro></financeiro>
+      </mat-tab>
+      <mat-tab label="Perfil">
+        <perfil></perfil>
+      </mat-tab>
+    </mat-tab-group>
   </div>
-
   <app-footer [rotaBotaoHome]="route.FEEDV2" class="containers"></app-footer>
 </div>

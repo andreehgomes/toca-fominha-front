@@ -14,8 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule, } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { FooterModule } from './components/footer/footer.module';
-import { ToolbarModule } from './components/toolbar/toolbar.module';
+import {MatTabsModule} from '@angular/material/tabs';
 
 //Formatos para ajustar input de data datepicker
 const MY_FORMATS = {
@@ -50,6 +49,7 @@ const MY_FORMATS = {
     MatDatepickerModule,
     MatNativeDateModule,
     MatMomentDateModule,
+    MatTabsModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
