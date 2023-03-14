@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { environment } from 'src/environments/environment';
 import { InitAuthService } from './core/base-auth/init-auth.service';
 import { RouterService } from './core/router/router.service';
 import { PayloadLogin } from './feature/login/shared/model/payload-login';
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log("ENV: ",environment.production);
     sessionStorage.setItem('logout', 'n');
     this.router.navigate(this.router.route.LOGIN);
   }
