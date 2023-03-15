@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log("ENV: ",environment.production);
     sessionStorage.setItem('logout', 'n');
     this.router.navigate(this.router.route.LOGIN);
   }
@@ -42,8 +41,7 @@ export class AppComponent implements OnInit {
           });
           this.subscribeMensagem?.unsubscribe();
         }
-      });
-      
+      });      
     });
   }
 }

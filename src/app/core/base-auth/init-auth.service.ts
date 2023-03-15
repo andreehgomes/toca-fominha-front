@@ -11,7 +11,6 @@ export class InitAuthService {
   getToken() {
     const login = localStorage.getItem('token');    
     if(!!login){
-      console.log('login', JSON.parse(window.atob(localStorage.getItem('token'))));
       return JSON.parse(window.atob(localStorage.getItem('token')));
     }
     return;

@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   initiByStorage() {
     const usuario = this.auth.getToken();
-    console.log(usuario)
     if (usuario) {
       this.formControlUsuario.controls['celularFormGroup'].setValue(
         usuario.celular
@@ -109,5 +108,4 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.service.behaviorUsuarioLogado.next(null);
   }
-
 }
