@@ -11,7 +11,7 @@ import { GlobalErrorHandler } from './core/http-handler/global-error-handler';
 import { PageErrorComponent } from './feature/page-error/page-error.component';
 import localePt from '@angular/common/locales/pt';
 import {registerLocaleData, DatePipe} from '@angular/common';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule, FirebaseOptions } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore'; 
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
@@ -19,9 +19,6 @@ import config from '../assets/config.json';
 
 registerLocaleData(localePt, 'pt');
 
-export class returnConfigFirebase{
-  
-}
 
 @NgModule({
   declarations: [
