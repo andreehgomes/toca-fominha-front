@@ -32,7 +32,7 @@ registerLocaleData(localePt, 'pt');
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(config.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
   ],

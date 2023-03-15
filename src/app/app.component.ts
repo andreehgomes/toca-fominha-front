@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.onLoad();
-    // this.onLoadStatus = true;
     sessionStorage.setItem('logout', 'n');
     this.router.navigate(this.router.route.LOGIN);
   }
