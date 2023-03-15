@@ -19,6 +19,10 @@ import config from '../assets/config.json';
 
 registerLocaleData(localePt, 'pt');
 
+export class returnConfigFirebase{
+  
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,7 @@ registerLocaleData(localePt, 'pt');
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(process.env.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
   ],
