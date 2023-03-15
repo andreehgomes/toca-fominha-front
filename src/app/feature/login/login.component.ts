@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
 import { RouterService } from 'src/app/core/router/router.service';
 import { AlertaModel } from 'src/app/shared/model/alertas-model';
+import { OnloadService } from 'src/app/shared/util/onload.service';
 import { PayloadLogin } from './shared/model/payload-login';
 import { ResponseLogin } from './shared/model/response-login';
 import { LoginService } from './shared/service/login.service';
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private service: LoginService,
     private auth: InitAuthService,
-    private router: RouterService
+    private router: RouterService,
+    private onLoadService: OnloadService
   ) {}
 
   formControlUsuario = new FormGroup({
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit(): void {
+    this.hideSplash();
     const logout = sessionStorage.getItem('logout');
     if (logout != 's') {
       this.initiByStorage();
@@ -107,5 +110,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.service.behaviorUsuarioLogado.next(null);
+  }
+
+  hideSplash(){
+    setTimeout(() => {
+      this.onLoadService.onLoadBehavior.next(true);
+    }, 500)
   }
 }
