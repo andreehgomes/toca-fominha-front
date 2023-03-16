@@ -39,7 +39,7 @@ export const getConfigFireBase =
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.configFirebase),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
   ],

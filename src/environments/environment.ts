@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  configFirebase: {
+  firebaseConfig: {
     apiKey: 'AIzaSyALnvoK_6yQhkUQAydqFVenPc5nfbx-Rt0',
     authDomain: 'toca-fominha-dev.firebaseapp.com',
     projectId: 'toca-fominha-dev',
