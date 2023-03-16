@@ -21,32 +21,15 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import config from '../assets/config.json';
+import { ConfigFirebaseService } from './core/config-firebase/config-firebase.service';
+import { env } from 'process';
 
 registerLocaleData(localePt, 'pt');
 
-export const getConfigFireModule = () => {
-  if (environment.production) {
-    return {
-      apiKey: process.env.apiKey,
-      authDomain: process.env.authDomain,
-      projectId: process.env.projectId,
-      storageBucket: process.env.storageBucket,
-      messagingSenderId: process.env.messagingSenderId,
-      appId: process.env.appId,
-      measurementId: process.env.measurementId,
-    };
-  } else {
-    return {
-      apiKey: 'AIzaSyALnvoK_6yQhkUQAydqFVenPc5nfbx-Rt0',
-      authDomain: 'toca-fominha-dev.firebaseapp.com',
-      projectId: 'toca-fominha-dev',
-      storageBucket: 'toca-fominha-dev.appspot.com',
-      messagingSenderId: '1058881912976',
-      appId: '1:1058881912976:web:bc7c7a321699d199929815',
-      measurementId: 'G-E23NL8YSJM',
-    };
-  }
-};
+// export const getConfigFireBase =
+//   (configFirebaseService: ConfigFirebaseService) => () => {
+//     return configFirebaseService.getConfigFireBase();
+//   };
 
 @NgModule({
   declarations: [AppComponent, LoaderComponent, PageErrorComponent],
@@ -56,7 +39,15 @@ export const getConfigFireModule = () => {
     MaterialModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(getConfigFireModule),
+    AngularFireModule.initializeApp({
+      apiKey: environment.apiKey,
+      authDomain: environment.authDomain,
+      projectId: environment.projectId,
+      storageBucket: environment.storageBucket,
+      messagingSenderId: environment.messagingSenderId,
+      appId: environment.appId,
+      measurementId: environment.measurementId,
+    }),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
   ],
