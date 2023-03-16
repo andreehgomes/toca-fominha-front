@@ -26,10 +26,10 @@ import { env } from 'process';
 
 registerLocaleData(localePt, 'pt');
 
-// export const getConfigFireBase =
-//   (configFirebaseService: ConfigFirebaseService) => () => {
-//     return configFirebaseService.getConfigFireBase();
-//   };
+export const getConfigFireBase =
+  (configFirebaseService: ConfigFirebaseService) => () => {
+    return configFirebaseService.getConfigFireBase();
+  };
 
 @NgModule({
   declarations: [AppComponent, LoaderComponent, PageErrorComponent],
@@ -40,13 +40,13 @@ registerLocaleData(localePt, 'pt');
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp({
-      apiKey: environment.apiKey,
-      authDomain: environment.authDomain,
-      projectId: environment.projectId,
-      storageBucket: environment.storageBucket,
-      messagingSenderId: environment.messagingSenderId,
-      appId: environment.appId,
-      measurementId: environment.measurementId,
+      apiKey: process.env.apiKey,
+      authDomain: process.env.authDomain,
+      projectId: process.env.projectId,
+      storageBucket: process.env.storageBucket,
+      messagingSenderId: process.env.messagingSenderId,
+      appId: process.env.appId,
+      measurementId: process.env.measurementId,
     }),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
