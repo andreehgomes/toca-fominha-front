@@ -20,9 +20,7 @@ import { AngularFireModule, FirebaseOptions } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
-import config from '../assets/config.json';
 import { ConfigFirebaseService } from './core/config-firebase/config-firebase.service';
-import { env } from 'process';
 
 registerLocaleData(localePt, 'pt');
 
