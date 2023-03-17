@@ -43,10 +43,25 @@
   max-height: 70%;
 }
 
+.botao {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+a {
+  margin-top: 20px;
+}
+
 mat-form-field {
 width: 100%;
 }
 
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: white;
+}
+
+::ng-deep .mat-form-field-flex {
+  padding: 10.5px 10.5px 0;
 }

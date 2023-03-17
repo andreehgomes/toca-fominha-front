@@ -6,24 +6,42 @@
       class="example-form"
       #formDirective="ngForm"
     >
-      <input-moeda
-          matInput
-          changeValue
-          label="Valor"
-          [renderizarSimboloMoeda]="true"
-          [mostrarSimboloComoPrefixo]="false"
-          formControlName="valor"
-        ></input-moeda>
       <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Data de Nascimento</mat-label>
+        <mat-label>Data do pagamento</mat-label>
         <!-- <input matInput formControlName="dataNascimento" type="date" matInput placeholder="00/00/0000" /> -->
-        <input matInput formControlName="data" />
+        <input matInput formControlName="data" [matDatepicker]="datepicker" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="datepicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancelar</button>
+            <button mat-raised-button color="primary" matDatepickerApply>
+              Aplicar
+            </button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
       </mat-form-field>
+      <input-moeda
+        matInput
+        changeValue
+        label="Valor"
+        [renderizarSimboloMoeda]="true"
+        [mostrarSimboloComoPrefixo]="false"
+        formControlName="valor"
+      ></input-moeda>
       <mat-form-field>
-        <ngx-mat-file-input formControlName="file" placeholder="Basic Input" ></ngx-mat-file-input>
+        <ngx-mat-file-input
+          formControlName="file"
+          placeholder="Basic Input"
+        ></ngx-mat-file-input>
         <mat-icon matSuffix>folder</mat-icon>
       </mat-form-field>
-    
+      <div class="botao">
+        <button mat-stroked-button color="primary" type="submit" [disabled]="formControlPagamento.invalid">Salvar</button>
+        <a mat-stroked-button color="_blank" type="button" (click)="zerarForm()">Cancelar</a>
+      </div>
     </form>
   </div>
 </div>
