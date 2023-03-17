@@ -12,9 +12,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule, } from '@angular/material/datepicker';
-import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_FORMATS, } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 //Formatos para ajustar input de data datepicker
 const MY_FORMATS = {
@@ -49,7 +50,8 @@ const MY_FORMATS = {
     MatDatepickerModule,
     MatNativeDateModule,
     MatMomentDateModule,
-    MatTabsModule
+    MatTabsModule,
+    MaterialFileInputModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }

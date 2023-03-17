@@ -1,0 +1,29 @@
+<div class="content">
+  <div class="containers body" style="justify-content: center">
+    <form
+      [formGroup]="formControlPagamento"
+      (ngSubmit)="onSubmit()"
+      class="example-form"
+      #formDirective="ngForm"
+    >
+      <input-moeda
+          matInput
+          changeValue
+          label="Valor"
+          [renderizarSimboloMoeda]="true"
+          [mostrarSimboloComoPrefixo]="false"
+          formControlName="valor"
+        ></input-moeda>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Data de Nascimento</mat-label>
+        <!-- <input matInput formControlName="dataNascimento" type="date" matInput placeholder="00/00/0000" /> -->
+        <input matInput formControlName="data" />
+      </mat-form-field>
+      <mat-form-field>
+        <ngx-mat-file-input formControlName="file" placeholder="Basic Input" ></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+      </mat-form-field>
+    
+    </form>
+  </div>
+</div>
