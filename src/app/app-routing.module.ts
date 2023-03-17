@@ -39,6 +39,13 @@ const routes: Routes = [
       import('../app/feature/new-account/new-account.module').then(
         (m) => m.NewAccountModule
       ),
+  },
+  {
+    path: 'pagamento',
+    loadChildren: () =>
+      import('../app/feature/mensalidade/mensalidade.module').then(
+        (m) => m.MensalidadeModule
+      ),
   }
 ];
 

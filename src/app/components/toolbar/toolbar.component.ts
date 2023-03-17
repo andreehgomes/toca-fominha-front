@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
 import { RouterEnum } from 'src/app/core/router/router.enum';
 import { RouterService } from 'src/app/core/router/router.service';
 
@@ -9,15 +10,19 @@ import { RouterService } from 'src/app/core/router/router.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  @Input() usuario: any;
+  @Input() usuario?: any;
   openSideNav = false;
   routes = RouterEnum;
 
   constructor(
     private router: RouterService,
+    private auth: InitAuthService,
   ) { }
 
   ngOnInit(): void {
+    if(!this.usuario){
+      this.usuario = this.auth.getToken();
+    }
   }
 
   openCloseSideNav(){

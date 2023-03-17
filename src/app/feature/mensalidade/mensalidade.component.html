@@ -1,5 +1,14 @@
 <div class="content">
+  <app-toolbar class="containers"></app-toolbar>
   <div class="containers body" style="justify-content: center">
+    <div class="example-form">
+      <card-alert
+        *ngIf="mensagemMensalidade?.codigo != null"
+        tipo="{{ mensagemMensalidade.tipo }}"
+        codigo="{{ mensagemMensalidade.codigo }}"
+        mensagem="{{ mensagemMensalidade.mensagem }}"
+      ></card-alert>
+    </div>
     <form
       [formGroup]="formControlPagamento"
       (ngSubmit)="onSubmit()"
@@ -39,9 +48,19 @@
         <mat-icon matSuffix>folder</mat-icon>
       </mat-form-field>
       <div class="botao">
-        <button mat-stroked-button color="primary" type="submit" [disabled]="formControlPagamento.invalid">Salvar</button>
-        <a mat-stroked-button color="_blank" type="button" (click)="zerarForm()">Cancelar</a>
+        <button
+          mat-stroked-button
+          color="primary"
+          type="submit"
+          [disabled]="formControlPagamento.invalid"
+        >
+          Salvar
+        </button>
+        <a mat-stroked-button color="_blank" type="button" (click)="zerarForm()"
+          >Cancelar</a
+        >
       </div>
     </form>
   </div>
+  <app-footer class="containers"></app-footer>
 </div>

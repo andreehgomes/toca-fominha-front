@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import moment, { now } from 'moment';
+import { AlertaModel } from 'src/app/shared/model/alertas-model';
 
 @Component({
   selector: 'mensalidade',
@@ -12,6 +13,7 @@ export class MensalidadeComponent implements OnInit {
   @ViewChild('formDirective') private formDirective: NgForm;
 
   disabledData: boolean = true;
+  mensagemMensalidade: AlertaModel;
   
 
   constructor(private datePipe: DatePipe) {}

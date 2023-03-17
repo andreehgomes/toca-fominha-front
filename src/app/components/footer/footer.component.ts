@@ -10,11 +10,14 @@ import { RouterService } from 'src/app/core/router/router.service';
 export class FooterComponent implements OnInit {
 
   route = RouterEnum;
-  @Input() rotaBotaoHome: RouterEnum;
+  @Input() rotaBotaoHome?: RouterEnum;
 
   constructor(private router: RouterService) { }
 
   ngOnInit(): void {
+    if(!this.rotaBotaoHome){
+      this.rotaBotaoHome = this.route.FEEDV2;
+    }
   }
 
   goTo(){
