@@ -8,6 +8,6 @@ export interface Horario {
     horario_fim?: string,
     local?: string,
     valor_horario?: number,
-    valor_mensalidade?: number,
+    valor_pagamento?: number,
     valor_diaria?: number
 }

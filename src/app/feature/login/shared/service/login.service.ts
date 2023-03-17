@@ -38,7 +38,6 @@ export class LoginService {
               nome: login[0].payload.child("nome").val(),
               senha: login[0].payload.child("senha").val(),
             };
-            console.log(responseLogin);
             this.behaviorUsuarioLogado.next(responseLogin);
             this.behaviorLoginMensagem.next(null);
             this.loader.closeDialog();

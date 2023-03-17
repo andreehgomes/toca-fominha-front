@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MensalidadeComponent } from './mensalidade.component';
+import { PagamentoComponent } from './pagamento.component';
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputMoedaModule } from 'src/app/components/input-moeda/input-moeda.module';
 import { ToolbarModule } from 'src/app/components/toolbar/toolbar.module';
 import { FooterModule } from 'src/app/components/footer/footer.module';
-import { MensalidadeRoutingModule } from './mensalidade-routing.module';
+import { PagamentoRoutingModule } from './pagamento-routing.module';
 import { CardAlertModule } from 'src/app/components/card-alert/card-alert.module';
 
 @NgModule({
-  declarations: [MensalidadeComponent],
+  declarations: [PagamentoComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -19,9 +19,9 @@ import { CardAlertModule } from 'src/app/components/card-alert/card-alert.module
     InputMoedaModule,
     ToolbarModule,
     FooterModule,
-    MensalidadeRoutingModule,
+    PagamentoRoutingModule,
     CardAlertModule
   ],
-  exports: [MensalidadeComponent],
+  exports: [PagamentoComponent],
 })
-export class MensalidadeModule {}
+export class PagamentoModule {}

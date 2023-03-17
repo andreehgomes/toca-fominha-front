@@ -43,8 +43,8 @@ const routes: Routes = [
   {
     path: 'pagamento',
     loadChildren: () =>
-      import('../app/feature/mensalidade/mensalidade.module').then(
-        (m) => m.MensalidadeModule
+      import('./feature/pagamento/pagamento.module').then(
+        (m) => m.PagamentoModule
       ),
   }
 ];

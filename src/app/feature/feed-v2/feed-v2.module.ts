@@ -9,7 +9,7 @@ import { FooterModule } from '../../components/footer/footer.module';
 import { TreinosModule } from '../treinos/treinos.module'
 import { FinanceiroModule } from '../financeiro/financeiro.module';
 import { PerfilModule } from '../perfil/perfil.module';
-import { MensalidadeModule } from '../mensalidade/mensalidade.module';
+import { PagamentoModule } from '../pagamento/pagamento.module';
 
 @NgModule({
   declarations: [FeedV2Component],
@@ -23,7 +23,7 @@ import { MensalidadeModule } from '../mensalidade/mensalidade.module';
     TreinosModule,
     FinanceiroModule,
     PerfilModule,
-    MensalidadeModule
+    PagamentoModule
   ],  
 })
 export class FeedV2Module {}
