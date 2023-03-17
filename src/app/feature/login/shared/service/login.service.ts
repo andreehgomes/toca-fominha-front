@@ -27,16 +27,18 @@ export class LoginService {
     let mensagemLogin: AlertaModel = new AlertaModel();
 
     this.accountService
-      .getAccountByPhone(payload.celular)
+      .getAccountByPhoneKey(payload.celular)
       .subscribe((login) => {
         if (login.length != 0) {
-          if (this.checkPass(payload.senha, login[0]['senha'])) {
+          if (this.checkPass(payload.senha, login[0].payload.child("senha").val())) {
             responseLogin = {
-              celular: login[0]['celular'],
-              data_nascimento: login[0]['data_nascimento'],
-              nome: login[0]['nome'],
-              senha: login[0]['senha'],
+              key: login[0].key,
+              celular: login[0].payload.child("celular").val(),
+              data_nascimento: login[0].payload.child("data_nascimento").val(),
+              nome: login[0].payload.child("nome").val(),
+              senha: login[0].payload.child("senha").val(),
             };
+            console.log(responseLogin);
             this.behaviorUsuarioLogado.next(responseLogin);
             this.behaviorLoginMensagem.next(null);
             this.loader.closeDialog();
