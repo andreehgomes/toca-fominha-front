@@ -29,17 +29,17 @@ export class PagamentoService {
         console.log('PORCENT: ', Math.round(percentage))
         if(Math.round(percentage) == 100){
           this.loader.closeDialog();
+          this.responseInsertNewPayment.next({
+            tipo: AlertasType.SUCESSO,
+            codigo: '200',
+            mensagem: 'Pamento inserido com sucesso!!!'
+          })
         }
       },
       error => {
         console.log(error);
       }
     );
-    this.responseInsertNewPayment.next({
-      tipo: AlertasType.SUCESSO,
-      codigo: '200',
-      mensagem: 'Pamento inserido com sucesso!!!'
-    })
     return of('200')
   }
 }
