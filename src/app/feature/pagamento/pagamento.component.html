@@ -43,7 +43,8 @@
       <mat-form-field>
         <ngx-mat-file-input
           formControlName="file"
-          placeholder="Basic Input"
+          placeholder="Comprovante"
+          (change)="selectFile($event)"
         ></ngx-mat-file-input>
         <mat-icon matSuffix>folder</mat-icon>
       </mat-form-field>

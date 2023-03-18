@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
 import { AccountModel } from 'src/app/shared/model/accout.enum';
 import { AlertaModel } from 'src/app/shared/model/alertas-model';
+import { FileUploadModel } from 'src/app/shared/model/file-upload-model';
 import { NewAccount } from '../new-account/shared/model/new-account';
 import { PaymentModel } from './shared/model/payment.model';
 import { PagamentoService } from './shared/service/pagamento.service';
@@ -22,6 +23,11 @@ export class PagamentoComponent implements OnInit {
   disabledData: boolean = true;
   mensagemPagamento: AlertaModel;
   private usuario: AccountModel;
+
+  //arquivos
+  selectedFiles: FileList;
+  currentFileUpload: FileUploadModel;
+  percentage: number;
 
   constructor(
     private datePipe: DatePipe,
@@ -40,15 +46,18 @@ export class PagamentoComponent implements OnInit {
   }
 
   onSubmit() {
+    const fileUpload = this.selectedFiles.item(0);
+    this.selectedFiles = undefined;
+    this.currentFileUpload = new FileUploadModel(fileUpload);
     const { valor, data, file } = this.formControlPagamento.controls;
     const pagamento: PaymentModel = {
       valor: valor.value,
       dataPagamento: this.datePipe.transform(data.value, 'dd/MM/yyyy'),
-      comprovante: file.value,
+      nomeComprovante: file.value,
       keyPagador: this.usuario.key,
       nomePagador: this.usuario.nome,
     };
-    this.subscription = this.pagamentoService.insertNewPayment(pagamento).subscribe((payment) => {
+    this.subscription = this.pagamentoService.insertNewPayment(pagamento, this.currentFileUpload).subscribe((payment) => {
       this.pagamentoService.responseInsertNewPayment.subscribe((mensagem) => {
         this.mensagemPagamento = mensagem;
         this.zerarForm();
@@ -68,5 +77,9 @@ export class PagamentoComponent implements OnInit {
       data: new FormControl(moment()),
       file: new FormControl(null, Validators.required),
     });
+  }
+
+  selectFile(event): void {
+    this.selectedFiles = event.target.files;
   }
 }

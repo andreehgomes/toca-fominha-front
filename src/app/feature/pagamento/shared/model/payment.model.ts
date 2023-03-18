@@ -4,5 +4,7 @@ export interface PaymentModel {
     tipo?: string;
     valor: string;
     dataPagamento: string;
-    comprovante?: string;
+    keyComprovante?: string;
+    nomeComprovante?: string;
+    url?: string;
 }

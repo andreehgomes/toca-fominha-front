@@ -21,6 +21,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import { ConfigFirebaseService } from './core/config-firebase/config-firebase.service';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 registerLocaleData(localePt, 'pt');
 
@@ -40,6 +41,7 @@ export const getConfigFireBase =
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [
     {
