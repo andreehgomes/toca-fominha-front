@@ -15,6 +15,13 @@ export class InitAuthService {
     }
     return;
   }
+  getUsuario() {
+    const login = localStorage.getItem('usuario');    
+    if(!!login){
+      return JSON.parse(window.atob(localStorage.getItem('usuario')));
+    }
+    return;
+  }
 
   getAuth(): any {
     const auth = this.getToken();

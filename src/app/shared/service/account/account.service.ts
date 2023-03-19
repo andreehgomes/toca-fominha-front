@@ -8,6 +8,7 @@ import { Subscription, of, Observable, BehaviorSubject } from 'rxjs';
 import { AlertaModel } from '../../model/alertas-model';
 import { AlertasType } from '../../model/alertas-type.enum';
 import { LoaderService } from 'src/app/components/loader/loader.service';
+import { ResponseLogin } from 'src/app/feature/login/shared/model/response-login';
 
 @Injectable({
   providedIn: 'root',
@@ -29,9 +30,16 @@ export class AccountService {
       .createUserWithEmailAndPassword(newAccount.email, newAccount.senha)
       .then((user) => {
         newAccount.uid = user.user.uid;
+        let newAccountData = {
+          celular: newAccount.celular,
+          data_nascimento: newAccount.data_nascimento,
+          nome: newAccount.nome,
+          email: newAccount.email,
+          uid: user.user.uid
+        }
         this.angularFireDataBase
           .list(this.pathAccount)
-          .push(newAccount)
+          .push(newAccountData)
           .then((account) => {
             this.responseInsertNewAccount.next({
               tipo: AlertasType.SUCESSO,

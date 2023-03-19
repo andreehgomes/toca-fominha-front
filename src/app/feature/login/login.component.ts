@@ -75,7 +75,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.service.signWithEmail(payload.email, payload.senha).then(() => {
       this.service.behaviorUsuarioLogado.subscribe((logado) => {
         if (logado) {
-          localStorage.setItem('token', btoa(JSON.stringify(logado)));
+          localStorage.setItem('usuario', btoa(JSON.stringify(logado)));
+          localStorage.setItem('token', btoa(JSON.stringify(payload)));
           this.router.navigate(this.router.route.FEEDV2);
           this.mensagemRespostaLogin = null;
         } else {

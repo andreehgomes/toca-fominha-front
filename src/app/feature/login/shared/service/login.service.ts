@@ -38,7 +38,6 @@ export class LoginService {
               celular: login[0].payload.child('celular').val(),
               data_nascimento: login[0].payload.child('data_nascimento').val(),
               nome: login[0].payload.child('nome').val(),
-              senha: login[0].payload.child('senha').val(),
               email: login[0].payload.child('email').val(),
               uid: login[0].payload.child('uid').val(),
             };

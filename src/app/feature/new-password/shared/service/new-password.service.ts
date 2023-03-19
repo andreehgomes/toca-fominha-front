@@ -32,6 +32,7 @@ export class NewPasswordService {
         .updatePassword(pass)
         .then((newPass) => {
           console.log('newPass: ', newPass)
+          localStorage.removeItem('token');
           this.behaviorMensagemNewPass.next({
             tipo: AlertasType.SUCESSO,
             codigo: '200',
