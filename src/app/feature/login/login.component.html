@@ -23,13 +23,21 @@
         (ngSubmit)="onSubmitLogin()"
         class="example-form"
       >
-        <mat-form-field class="example-full-width" appearance="fill">
+        <!-- <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Celular</mat-label>
           <input
             formControlName="celularFormGroup"
             type="tel"
             matInput
             placeholder="00 00000-00"
+          />
+        </mat-form-field> -->
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>E-mail</mat-label>
+          <input
+            formControlName="emailFormGroup"
+            type="text"
+            matInput
           />
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">

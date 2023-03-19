@@ -13,7 +13,6 @@ import { RouterEnum } from 'src/app/core/router/router.enum';
   styleUrls: ['./new-account.component.scss'],
 })
 export class NewAccountComponent implements OnInit {
-
   route = RouterEnum;
 
   @ViewChild('formDirective') private formDirective: NgForm;
@@ -31,7 +30,7 @@ export class NewAccountComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private datePipe: DatePipe,
+    private datePipe: DatePipe
   ) {}
 
   formControlNewAccount = new FormGroup({
@@ -39,13 +38,14 @@ export class NewAccountComponent implements OnInit {
     dataNascimento: new FormControl(null, [Validators.required]),
     novaSenha: new FormControl(null, [Validators.required]),
     celular: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.required]),
   });
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    const { nome, dataNascimento, novaSenha, celular } =
+    const { nome, dataNascimento, novaSenha, celular, email } =
       this.formControlNewAccount.controls;
 
     this.newAccount = {
@@ -56,28 +56,32 @@ export class NewAccountComponent implements OnInit {
       ),
       celular: celular.value,
       senha: btoa(novaSenha.value),
+      email: email.value,
     };
 
-    this.accountService.insertNewAccount(this.newAccount).subscribe((res) => {
-      this.accountService.responseInsertNewAccount.subscribe((mensagem) => {
-        this.mensagemRespostaCadastro = mensagem;
+    this.accountService
+      .insertNewAccountEmail(this.newAccount)
+      .subscribe((res) => {
+        console.log('conta: ', this.newAccount);
+        this.accountService.responseInsertNewAccount.subscribe((mensagem) => {
+          this.mensagemRespostaCadastro = mensagem;
 
-        if (this.mensagemRespostaCadastro) {
-          if (this.mensagemRespostaCadastro.codigo == '200') {
-            this.sucesso = true;
-            this.erro = false;
-          } else if (this.mensagemRespostaCadastro.codigo == '500') {
-            this.erro = true;
-            this.sucesso = false;
+          if (this.mensagemRespostaCadastro) {
+            if (this.mensagemRespostaCadastro.codigo == '200') {
+              this.sucesso = true;
+              this.erro = false;
+            } else if (this.mensagemRespostaCadastro.codigo == '500') {
+              this.erro = true;
+              this.sucesso = false;
+            }
           }
-        }
+        });
       });
-    });
 
     this.zerarForm();
   }
 
-  zerarForm(){
+  zerarForm() {
     this.formControlNewAccount.reset();
     this.formDirective.resetForm();
     for (let control in this.formControlNewAccount.controls) {
@@ -88,6 +92,7 @@ export class NewAccountComponent implements OnInit {
       dataNascimento: new FormControl(null, [Validators.required]),
       novaSenha: new FormControl(null, [Validators.required]),
       celular: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required]),
     });
   }
 }

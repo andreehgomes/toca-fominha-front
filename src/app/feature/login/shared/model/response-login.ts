@@ -4,4 +4,6 @@ export interface ResponseLogin {
     celular: string;
     data_nascimento: string;
     senha: string;
+    uid?: string;
+    email?: string;
 }

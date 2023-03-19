@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, QueryFn } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
 import {} from 'firebase/database';
 import { NewAccount } from 'src/app/feature/new-account/shared/model/new-account';
 import { map } from 'rxjs/operators';
@@ -13,51 +14,57 @@ import { LoaderService } from 'src/app/components/loader/loader.service';
 })
 export class AccountService {
   public responseInsertNewAccount = new BehaviorSubject<AlertaModel>(null);
+  pathAccount = 'account';
 
   constructor(
+    private angularFireAuth: AngularFireAuth,
     private angularFireDataBase: AngularFireDatabase,
     private loader: LoaderService
   ) {}
 
-  insertNewAccount(newAccount: NewAccount): Observable<any> {
+  insertNewAccountEmail(newAccount: NewAccount): Observable<any> {
     this.loader.openDialog();
-    let subscription: Subscription;
-    let findPhone;
-
-    subscription = this.getAccountByPhone(newAccount.celular).subscribe(
-      (res) => {
-        findPhone = res;
-        if (findPhone.length == 0) {
-          this.angularFireDataBase.list('account').push(newAccount);
-          this.responseInsertNewAccount.next({
-            tipo: AlertasType.SUCESSO,
-            codigo: '200',
-            mensagem: 'Cadastro realizado com sucesso!!!',
+    console.log(newAccount);
+    this.angularFireAuth
+      .createUserWithEmailAndPassword(newAccount.email, newAccount.senha)
+      .then((user) => {
+        newAccount.uid = user.user.uid;
+        this.angularFireDataBase
+          .list(this.pathAccount)
+          .push(newAccount)
+          .then((account) => {
+            this.responseInsertNewAccount.next({
+              tipo: AlertasType.SUCESSO,
+              codigo: '200',
+              mensagem: 'Cadastro realizado com sucesso!!!',
+            });
+            this.loader.closeDialog();
+          })
+          .catch((error) => {
+            console.log(error);
+            this.responseInsertNewAccount.next({
+              codigo: error.code,
+              mensagem: error.message,
+              tipo: AlertasType.ERRO,
+            });
+            this.loader.closeDialog();
           });
-          subscription.unsubscribe();
-          this.loader.closeDialog();
-        } else {
-          this.responseInsertNewAccount.next({
-            tipo: AlertasType.ERRO,
-            codigo: '500',
-            mensagem: 'Esse celular já está sendo usado por outro jogador!!!',
-          });
-          this.loader.closeDialog();
-        }
-      }
-    );
+      })
+      .catch((error) => {
+        console.log(error);
+        this.responseInsertNewAccount.next({
+          codigo: error.code,
+          mensagem: error.message,
+          tipo: AlertasType.ERRO,
+        });
+        this.loader.closeDialog();
+      });
     return of('200');
   }
 
-  getAccountByPhone(celular: string) {
+  getAccountByUidKey(celular: string) {
     return this.angularFireDataBase
-      .list('/account', (ref) => ref.orderByChild('celular').equalTo(celular))
-      .valueChanges();
-  }
-
-  getAccountByPhoneKey(celular: string) {
-    return this.angularFireDataBase
-      .list('/account', (ref) => ref.orderByChild('celular').equalTo(celular))
+      .list('/account', (ref) => ref.orderByChild('uid').equalTo(celular))
       .snapshotChanges();
   }
 

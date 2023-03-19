@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
 
   formControlUsuario = new FormGroup({
-    celularFormGroup: new FormControl(),
+    emailFormGroup: new FormControl(),
     senhaFormGroup: new FormControl(),
   });
 
@@ -46,65 +46,61 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmitLogin() {
     this.formControlUsuario.disable();
-    const { celularFormGroup, senhaFormGroup } =
-      this.formControlUsuario.controls;
+    const { emailFormGroup, senhaFormGroup } = this.formControlUsuario.controls;
     const payload: PayloadLogin = {
-      celular: celularFormGroup.value,
-      senha: senhaFormGroup.value,
+      email: emailFormGroup.value,
+      senha: btoa(senhaFormGroup.value),
     };
-      this.autenticar(payload);
-    
+    this.autenticarWithEmail(payload);
   }
 
   initiByStorage() {
     const usuario = this.auth.getToken();
     if (usuario) {
-      this.formControlUsuario.controls['celularFormGroup'].setValue(
-        usuario.celular
+      this.formControlUsuario.controls['emailFormGroup'].setValue(
+        usuario.email
       );
       this.formControlUsuario.controls['senhaFormGroup'].setValue(
-        btoa(usuario.senha)
+        usuario.senha
       );
-      this.autenticar({
-        celular: usuario.celular,
-        senha: atob(usuario.senha)
+      console.log(usuario)
+      this.autenticarWithEmail({
+        email: usuario.email,
+        senha: usuario.senha,
       });
     }
   }
 
-  autenticar(payload: PayloadLogin) {
-   this.service.autenticar(payload).then(() => {
-    this.service.behaviorUsuarioLogado.subscribe((logado) => {
-      if(logado){
-        localStorage.setItem("token", btoa(JSON.stringify(logado)));
-        this.router.navigate(this.router.route.FEEDV2);
-        this.mensagemRespostaLogin = null;
-      }else{
-        this.service.behaviorLoginMensagem.subscribe((mensagem) => {
-          if(mensagem){
-            this.mensagemRespostaLogin = mensagem;
-          }
-        })
-        this.subscribeMensagem?.unsubscribe();
-      }
+  autenticarWithEmail(payload: PayloadLogin) {
+    this.service.signWithEmail(payload.email, payload.senha).then(() => {
+      this.service.behaviorUsuarioLogado.subscribe((logado) => {
+        if (logado) {
+          localStorage.setItem('token', btoa(JSON.stringify(logado)));
+          this.router.navigate(this.router.route.FEEDV2);
+          this.mensagemRespostaLogin = null;
+        } else {
+          this.service.behaviorLoginMensagem.subscribe((mensagem) => {
+            if (mensagem) {
+              this.mensagemRespostaLogin = mensagem;
+            }
+          });
+          this.subscribeMensagem?.unsubscribe();
+        }
+      });
+      this.subscribeLogin?.unsubscribe();
     });
-    this.subscribeLogin?.unsubscribe();
-   });
-   
-      // this.router.navigate(this.router.route.FEEDV2);
-      this.formControlUsuario.reset();
-      this.formControlUsuario.enable();
-    
+    this.formControlUsuario.reset();
+    this.formControlUsuario.enable();
   }
 
-  newPassword(){
+  newPassword() {
     this.router.navigate(this.router.route.NEW_PASSWORD);
   }
-  newAccoumt(){
+  newAccoumt() {
     this.router.navigate(this.router.route.NEW_ACCOUNT);
   }
 
-  goTo(rota: string){
+  goTo(rota: string) {
     this.router.navigate(rota);
   }
 
@@ -112,9 +108,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.service.behaviorUsuarioLogado.next(null);
   }
 
-  hideSplash(){
+  hideSplash() {
     setTimeout(() => {
       this.onLoadService.onLoadBehavior.next(true);
-    }, 500)
+    }, 500);
   }
 }

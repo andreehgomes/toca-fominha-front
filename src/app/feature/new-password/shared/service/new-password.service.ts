@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { LoaderService } from 'src/app/components/loader/loader.service';
 import { NewAccount } from 'src/app/feature/new-account/shared/model/new-account';
@@ -18,25 +19,51 @@ export class NewPasswordService {
     new BehaviorSubject<AlertaModel>(null);
 
   constructor(
-    private http: HttpClient,
     private accountService: AccountService,
-    private loader: LoaderService
+    private loader: LoaderService,
+    private angularFireAuth: AngularFireAuth
   ) {}
+
+  async changePass(pass: string) {
+    console.log('NEW PASS: ', pass);
+    this.loader.openDialog();
+    this.angularFireAuth.currentUser.then((user) => {
+      user
+        .updatePassword(pass)
+        .then((newPass) => {
+          console.log('newPass: ', newPass)
+          this.behaviorMensagemNewPass.next({
+            tipo: AlertasType.SUCESSO,
+            codigo: '200',
+            mensagem: 'Senha alterada com sucesso.',
+          });
+          this.loader.closeDialog();
+        })
+        .catch((error) => {
+          this.behaviorMensagemNewPass.next({
+            tipo: AlertasType.ERRO,
+            codigo: error.code,
+            mensagem: error.message
+          });
+          this.loader.closeDialog();
+        });
+    });
+  }
 
   async newPassword(payload: PayloadNewPass) {
     let updateAccount: NewAccount = new NewAccount();
     let subscriptionGetPhone: Subscription;
     this.loader.openDialog();
     subscriptionGetPhone = this.accountService
-      .getAccountByPhoneKey(payload.celular)
+      .getAccountByUidKey(payload.celular)
       .subscribe((account) => {
         if (account.length != 0) {
           updateAccount = {
-            nome: account[0].payload.child("nome").val(),
-            celular: account[0].payload.child("celular").val(),
-            data_nascimento: account[0].payload.child("data_nascimento").val(),
-            senha: btoa(payload.senha)
-          }
+            nome: account[0].payload.child('nome').val(),
+            celular: account[0].payload.child('celular').val(),
+            data_nascimento: account[0].payload.child('data_nascimento').val(),
+            senha: btoa(payload.senha),
+          };
           if (
             this.checkDataNascimento(
               payload.data_nascimento,

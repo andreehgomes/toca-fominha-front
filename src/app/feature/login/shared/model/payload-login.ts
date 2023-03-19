@@ -1,4 +1,5 @@
 export interface PayloadLogin {
-    celular: string;
+    email?: string;
     senha: string;
+    celular?: string;
 }

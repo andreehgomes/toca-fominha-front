@@ -21,7 +21,6 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: RouterService,
-    private service: LoginService,
     private onLoadService: OnloadService
   ) {}
 
@@ -29,23 +28,6 @@ export class AppComponent implements OnInit {
     this.onLoad();
     sessionStorage.setItem('logout', 'n');
     this.router.navigate(this.router.route.LOGIN);
-  }
-
-  autenticar(payload: PayloadLogin) {
-    this.service.autenticar(payload).then(() => {
-      this.service.behaviorUsuarioLogado.subscribe((logado) => {
-        if (logado) {
-          localStorage.setItem('token', btoa(JSON.stringify(logado)));
-          this.router.navigate(this.router.route.FEEDV2);
-          this.subscribeLogin?.unsubscribe();
-        } else {
-          this.service.behaviorLoginMensagem.subscribe((mensagem) => {
-            this.router.navigate(this.router.route.LOGIN);
-          });
-          this.subscribeMensagem?.unsubscribe();
-        }
-      });      
-    });
   }
 
   onLoad(){
