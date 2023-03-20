@@ -21,7 +21,7 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     if(!this.usuario){
-      this.usuario = this.auth.getToken();
+      this.usuario = this.auth.getUsuario();
     }
   }
 
