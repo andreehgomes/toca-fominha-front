@@ -1,5 +1,5 @@
 export interface PaymentModel {
-    keyPagador: string;
+    uidPagador: string;
     nomePagador: string;
     tipo?: string;
     valor: string;

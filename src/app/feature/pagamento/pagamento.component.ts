@@ -7,6 +7,7 @@ import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
 import { AccountModel } from 'src/app/shared/model/accout.enum';
 import { AlertaModel } from 'src/app/shared/model/alertas-model';
 import { FileUploadModel } from 'src/app/shared/model/file-upload-model';
+import { ResponseLogin } from '../login/shared/model/response-login';
 import { NewAccount } from '../new-account/shared/model/new-account';
 import { PaymentModel } from './shared/model/payment.model';
 import { PagamentoService } from './shared/service/pagamento.service';
@@ -22,7 +23,7 @@ export class PagamentoComponent implements OnInit {
   subscription: Subscription;
   disabledData: boolean = true;
   mensagemPagamento: AlertaModel;
-  private usuario: AccountModel;
+  private usuario: ResponseLogin;
 
   //arquivos
   selectedFiles: FileList;
@@ -42,7 +43,7 @@ export class PagamentoComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.usuario = this.auth.getToken();
+    this.usuario = this.auth.getUsuario();
   }
 
   onSubmit() {
@@ -54,7 +55,7 @@ export class PagamentoComponent implements OnInit {
       valor: valor.value,
       dataPagamento: this.datePipe.transform(data.value, 'dd/MM/yyyy'),
       nomeComprovante: file.value,
-      keyPagador: this.usuario.key,
+      uidPagador: this.usuario.uid,
       nomePagador: this.usuario.nome,
     };
     this.subscription = this.pagamentoService.insertNewPayment(pagamento, this.currentFileUpload).subscribe((payment) => {
