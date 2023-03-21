@@ -32,18 +32,18 @@ export class NewPasswordComponent implements OnInit {
   ) {}
 
   formControlNewPass = new FormGroup({
-    novaSenha: new FormControl(null, Validators.required),
+    novaSenha: new FormControl(null, [Validators.required, Validators.minLength(6)]),
   });
 
   ngOnInit(): void {}
 
   onSubmit() {
     const { novaSenha } = this.formControlNewPass.controls;
-    this.newPassService.changePass(btoa(novaSenha.value)).then(() => {
+    this.newPassService.changePass(novaSenha.value).then(() => {
       this.newPassService.behaviorMensagemNewPass.subscribe((mensagem) => {
         this.mensagemNewPass = mensagem;
         localStorage.removeItem('token');
-      })
+      });
     });
   }
 
@@ -54,9 +54,10 @@ export class NewPasswordComponent implements OnInit {
       this.formControlNewPass.controls[control].setErrors(null);
     }
     this.formControlNewPass = new FormGroup({
-      dataNascimento: new FormControl(null, Validators.required),
-      novaSenha: new FormControl(null, Validators.required),
-      celular: new FormControl(null, Validators.required),
+      novaSenha: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
   }
 }

@@ -36,7 +36,7 @@ export class NewAccountComponent implements OnInit {
   formControlNewAccount = new FormGroup({
     nome: new FormControl(null, [Validators.required]),
     dataNascimento: new FormControl(null, [Validators.required]),
-    novaSenha: new FormControl(null, [Validators.required]),
+    novaSenha: new FormControl(null, [Validators.required, Validators.minLength(6)]),
     celular: new FormControl(null, [Validators.required]),
     email: new FormControl(null, [Validators.required]),
   });
@@ -55,7 +55,7 @@ export class NewAccountComponent implements OnInit {
         'dd/MM/yyyy'
       ),
       celular: celular.value,
-      senha: btoa(novaSenha.value),
+      senha: (novaSenha.value),
       email: email.value,
     };
 
@@ -90,7 +90,7 @@ export class NewAccountComponent implements OnInit {
     this.formControlNewAccount = new FormGroup({
       nome: new FormControl(null, [Validators.required]),
       dataNascimento: new FormControl(null, [Validators.required]),
-      novaSenha: new FormControl(null, [Validators.required]),
+      novaSenha: new FormControl(null, [Validators.required, Validators.minLength(6)]),
       celular: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required]),
     });

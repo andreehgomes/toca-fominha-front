@@ -1,0 +1,49 @@
+<div class="content">
+  <app-toolbar class="containers" [usuario]="usuario"></app-toolbar>
+  <div class="example-form">
+    <card-alert
+      *ngIf="mensagemRedefinirSenha?.codigo != null"
+      tipo="{{ mensagemRedefinirSenha.tipo }}"
+      codigo="{{ mensagemRedefinirSenha.codigo }}"
+      mensagem="{{ mensagemRedefinirSenha.mensagem }}"
+    ></card-alert>
+  </div>
+  <form
+    [formGroup]="formControlNewPass"
+    (ngSubmit)="onSubmit()"
+    class="example-form"
+    #formDirective="ngForm"
+  >
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Informe o e-mail para a redefinição da senha</mat-label>
+      <input
+        formControlName="email"
+        type="text"
+        matInput
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+      </button>
+    </mat-form-field>
+    <div class="botao">
+      <button
+        mat-stroked-button
+        color="primary"
+        type="submit"
+        [disabled]="formControlNewPass.invalid"
+      >
+        Enviar e-mail
+      </button>
+      <a mat-stroked-button color="_blank" type="button" (click)="zerarForm()"
+        >Cancelar</a
+      >
+    </div>
+  </form>
+
+  <app-footer [rotaBotaoHome]="route.LOGIN" class="containers"></app-footer>
+</div>

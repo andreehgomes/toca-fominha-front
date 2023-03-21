@@ -5,5 +5,6 @@ export enum RouterEnum {
     FEEDV2 = 'feed-v2',
     NEW_PASSWORD = 'new-password',
     NEW_ACCOUNT = 'new-account',
-    PAGAMENTO = 'pagamento'
+    PAGAMENTO = 'pagamento',
+    RESET_PASSWORD = 'reset-password'
 }

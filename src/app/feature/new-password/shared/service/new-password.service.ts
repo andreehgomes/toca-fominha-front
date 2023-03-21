@@ -63,7 +63,7 @@ export class NewPasswordService {
             nome: account[0].payload.child('nome').val(),
             celular: account[0].payload.child('celular').val(),
             data_nascimento: account[0].payload.child('data_nascimento').val(),
-            senha: btoa(payload.senha),
+            senha: (payload.senha),
           };
           if (
             this.checkDataNascimento(

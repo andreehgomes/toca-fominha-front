@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     const { emailFormGroup, senhaFormGroup } = this.formControlUsuario.controls;
     const payload: PayloadLogin = {
       email: emailFormGroup.value,
-      senha: btoa(senhaFormGroup.value),
+      senha: (senhaFormGroup.value),
     };
     this.autenticarWithEmail(payload);
   }
@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   newPassword() {
-    this.router.navigate(this.router.route.NEW_PASSWORD);
+    this.router.navigate(this.router.route.RESET_PASSWORD);
   }
   newAccoumt() {
     this.router.navigate(this.router.route.NEW_ACCOUNT);

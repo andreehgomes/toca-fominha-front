@@ -46,7 +46,14 @@ const routes: Routes = [
       import('./feature/pagamento/pagamento.module').then(
         (m) => m.PagamentoModule
       ),
-  }
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () =>
+      import('./feature/redefinir-senha/redefinir-senha.module').then(
+        (m) => m.RedefinirSenhaModule
+      ),
+  },
 ];
 
 @NgModule({
