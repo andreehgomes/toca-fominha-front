@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, SnapshotAction } from '@angular/fire/database';
 import { BehaviorSubject, Observable, of, Subscription } from 'rxjs';
 import { Alert } from 'selenium-webdriver';
 import { LoaderService } from 'src/app/components/loader/loader.service';
@@ -10,36 +10,46 @@ import { FileService } from 'src/app/shared/service/file/file.service';
 import { PaymentModel } from '../model/payment.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PagamentoService {
   public responseInsertNewPayment = new BehaviorSubject<AlertaModel>(null);
-  private path: string = 'payment'
+  private path: string = 'payment';
 
   constructor(
     private angularFireDataBase: AngularFireDatabase,
     private loader: LoaderService,
-    private fileService: FileService  ) { }
+    private fileService: FileService
+  ) {}
 
-  insertNewPayment(payment: PaymentModel, file: FileUploadModel): Observable<any>{
+  insertNewPayment(
+    payment: PaymentModel,
+    file: FileUploadModel
+  ): Observable<any> {
     this.loader.openDialog();
     // this.angularFireDataBase.list('payment').push(payment);
     this.fileService.pushFileToStorage(file, this.path, payment).subscribe(
-      percentage => {
-        console.log('PORCENT: ', Math.round(percentage))
-        if(Math.round(percentage) == 100){
+      (percentage) => {
+        console.log('PORCENT: ', Math.round(percentage));
+        if (Math.round(percentage) == 100) {
           this.loader.closeDialog();
           this.responseInsertNewPayment.next({
             tipo: AlertasType.SUCESSO,
             codigo: '200',
-            mensagem: 'Pamento inserido com sucesso!!!'
-          })
+            mensagem: 'Pamento inserido com sucesso!!!',
+          });
         }
       },
-      error => {
+      (error) => {
         console.log(error);
       }
     );
-    return of('200')
+    return of('200');
+  }
+
+  getListPayment(): Observable<any> {
+    return this.angularFireDataBase
+      .list(this.path, (ref) => ref.orderByChild('uid'))
+      .snapshotChanges();
   }
 }
