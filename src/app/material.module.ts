@@ -16,6 +16,7 @@ import { MatNativeDateModule, MAT_DATE_FORMATS, } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { MatSelectModule } from '@angular/material/select'
 
 //Formatos para ajustar input de data datepicker
 const MY_FORMATS = {
@@ -51,7 +52,8 @@ const MY_FORMATS = {
     MatNativeDateModule,
     MatMomentDateModule,
     MatTabsModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    MatSelectModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }

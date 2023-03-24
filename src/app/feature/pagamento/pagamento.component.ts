@@ -7,6 +7,7 @@ import { InitAuthService } from 'src/app/core/base-auth/init-auth.service';
 import { AccountModel } from 'src/app/shared/model/accout.enum';
 import { AlertaModel } from 'src/app/shared/model/alertas-model';
 import { FileUploadModel } from 'src/app/shared/model/file-upload-model';
+import { LocalTreino } from 'src/app/shared/model/local-treino';
 import { ResponseLogin } from '../login/shared/model/response-login';
 import { NewAccount } from '../new-account/shared/model/new-account';
 import { NewLocalTreinoService } from '../new-local-treino/shared/new-local-treino.service';
@@ -26,7 +27,7 @@ export class PagamentoComponent implements OnInit, OnDestroy {
   disabledData: boolean = true;
   mensagemPagamento: AlertaModel;
   private usuario: ResponseLogin;
-  listaLocalTreino: Array<string> = [];
+  listaLocalTreino: Array<LocalTreino> = [];
 
   //arquivos
   selectedFiles: FileList;
@@ -44,6 +45,7 @@ export class PagamentoComponent implements OnInit, OnDestroy {
     valor: new FormControl(null, Validators.required),
     data: new FormControl(moment()),
     file: new FormControl(null, Validators.required),
+    local: new FormControl(null, Validators.required)
   });
 
   ngOnInit(): void {
@@ -59,13 +61,14 @@ export class PagamentoComponent implements OnInit, OnDestroy {
     const fileUpload = this.selectedFiles.item(0);
     this.selectedFiles = undefined;
     this.currentFileUpload = new FileUploadModel(fileUpload);
-    const { valor, data, file } = this.formControlPagamento.controls;
+    const { valor, data, file, local } = this.formControlPagamento.controls;
     const pagamento: PaymentModel = {
       valor: valor.value,
       dataPagamento: this.datePipe.transform(data.value, 'dd/MM/yyyy'),
       nomeComprovante: file.value,
       uidPagador: this.usuario.uid,
       nomePagador: this.usuario.nome,
+      local: local.value['nome']
     };
     this.subscription = this.pagamentoService.insertNewPayment(pagamento, this.currentFileUpload).subscribe((payment) => {
       this.pagamentoService.responseInsertNewPayment.subscribe((mensagem) => {
@@ -86,6 +89,7 @@ export class PagamentoComponent implements OnInit, OnDestroy {
       valor: new FormControl(null, Validators.required),
       data: new FormControl(moment()),
       file: new FormControl(null, Validators.required),
+      local: new FormControl(null, Validators.required)
     });
   }
 

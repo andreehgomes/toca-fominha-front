@@ -7,4 +7,5 @@ export interface PaymentModel {
     keyComprovante?: string;
     nomeComprovante?: string;
     url?: string;
+    local?: string;
 }

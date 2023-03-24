@@ -32,6 +32,14 @@
           </mat-datepicker-actions>
         </mat-datepicker>
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Local Treino</mat-label>
+        <mat-select formControlName="local" name="local">
+          <mat-option *ngFor="let local of listaLocalTreino" [value]="local">
+            {{local.nome}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <input-moeda
         matInput
         changeValue
