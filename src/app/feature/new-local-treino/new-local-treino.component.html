@@ -1,0 +1,58 @@
+<div class="content">
+    <app-toolbar class="containers"></app-toolbar>
+    <div class="example-form">
+      <card-alert
+        *ngIf="mensagemNewLocal?.codigo != null"
+        tipo="{{ mensagemNewLocal.tipo }}"
+        codigo="{{ mensagemNewLocal.codigo }}"
+        mensagem="{{ mensagemNewLocal.mensagem }}"
+      ></card-alert>
+    </div>
+    <form
+      [formGroup]="formControlNewLocal"
+      (ngSubmit)="onSubmit()"
+      class="example-form"
+      #formDirective="ngForm"
+    >
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Local do treino</mat-label>
+        <input
+          formControlName="nome"
+          type="text"
+          matInput
+        />
+      </mat-form-field>
+      <input-moeda
+        matInput
+        changeValue
+        label="Mensalidade"
+        [renderizarSimboloMoeda]="true"
+        [mostrarSimboloComoPrefixo]="false"
+        formControlName="mensalidade"
+      ></input-moeda>
+      <input-moeda
+        matInput
+        changeValue
+        label="Diária"
+        [renderizarSimboloMoeda]="true"
+        [mostrarSimboloComoPrefixo]="false"
+        formControlName="diaria"
+      ></input-moeda>
+      <div class="botao">
+        <button
+          mat-stroked-button
+          color="primary"
+          type="submit"
+          [disabled]="formControlNewLocal.invalid"
+        >
+          Salvar
+        </button>
+        <a mat-stroked-button color="_blank" type="button" (click)="zerarForm()"
+          >Cancelar</a
+        >
+      </div>
+    </form>
+  
+    <app-footer [rotaBotaoHome]="route.FEEDV2" class="containers"></app-footer>
+  </div>
+  

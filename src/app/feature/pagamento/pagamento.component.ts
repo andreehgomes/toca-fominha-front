@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import moment, { now } from 'moment';
 import { Subscription } from 'rxjs';
@@ -9,6 +9,7 @@ import { AlertaModel } from 'src/app/shared/model/alertas-model';
 import { FileUploadModel } from 'src/app/shared/model/file-upload-model';
 import { ResponseLogin } from '../login/shared/model/response-login';
 import { NewAccount } from '../new-account/shared/model/new-account';
+import { NewLocalTreinoService } from '../new-local-treino/shared/new-local-treino.service';
 import { PaymentModel } from './shared/model/payment.model';
 import { PagamentoService } from './shared/service/pagamento.service';
 
@@ -17,13 +18,15 @@ import { PagamentoService } from './shared/service/pagamento.service';
   templateUrl: './pagamento.component.html',
   styleUrls: ['./pagamento.component.scss'],
 })
-export class PagamentoComponent implements OnInit {
+export class PagamentoComponent implements OnInit, OnDestroy {
   @ViewChild('formDirective') private formDirective: NgForm;
 
   subscription: Subscription;
+  subscriptionLocalTreino: Subscription;
   disabledData: boolean = true;
   mensagemPagamento: AlertaModel;
   private usuario: ResponseLogin;
+  listaLocalTreino: Array<string> = [];
 
   //arquivos
   selectedFiles: FileList;
@@ -33,7 +36,8 @@ export class PagamentoComponent implements OnInit {
   constructor(
     private datePipe: DatePipe,
     private auth: InitAuthService,
-    private pagamentoService: PagamentoService
+    private pagamentoService: PagamentoService,
+    private localTreinoService: NewLocalTreinoService
   ) {}
 
   formControlPagamento = new FormGroup({
@@ -44,6 +48,11 @@ export class PagamentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = this.auth.getUsuario();
+    this.getListaLocalTreino();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionLocalTreino.unsubscribe();
   }
 
   onSubmit() {
@@ -82,5 +91,14 @@ export class PagamentoComponent implements OnInit {
 
   selectFile(event): void {
     this.selectedFiles = event.target.files;
+  }
+
+  getListaLocalTreino(){
+    this.subscriptionLocalTreino = this.localTreinoService.getListaLocalTreino().subscribe((lista) => {
+      for(let list in lista){
+        this.listaLocalTreino.push(lista[list].payload.val());
+        console.log(this.listaLocalTreino);
+      }
+    })
   }
 }

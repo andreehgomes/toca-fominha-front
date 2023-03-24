@@ -54,6 +54,13 @@ const routes: Routes = [
         (m) => m.RedefinirSenhaModule
       ),
   },
+  {
+    path: 'new-local-treino',
+    loadChildren: () =>
+      import('./feature/new-local-treino/new-local-treino.module').then(
+        (m) => m.NewLocalTreinoModule
+      ),
+  },
 ];
 
 @NgModule({

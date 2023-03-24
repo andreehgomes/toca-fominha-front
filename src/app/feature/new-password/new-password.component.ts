@@ -26,9 +26,7 @@ export class NewPasswordComponent implements OnInit {
 
   constructor(
     private newPassService: NewPasswordService,
-    private router: RouterService,
-    private datePipe: DatePipe,
-    private accountService: AccountService
+    
   ) {}
 
   formControlNewPass = new FormGroup({
