@@ -1,0 +1,15 @@
+<div class="content-card">
+    <mat-card>
+        <div class="body-card">
+            <div class="column column-day">
+            </div>
+            <div class="column column-detail">
+                <p class="p-valor">Nome: <strong>{{pagamento.nomePagador}}</strong></p>
+                <p class="p-valor">Data: <strong>{{pagamento.dataPagamento}}</strong></p>
+                <p class="p-valor">Comprovante: <strong>{{pagamento.nomeComprovante}}</strong></p>
+                <hr>
+                <p>Valor: <strong>{{pagamento.valor | currency: 'BRL'}}</strong></p>
+            </div>
+        </div>
+    </mat-card>
+</div>

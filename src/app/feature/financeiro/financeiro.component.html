@@ -16,5 +16,35 @@
         Meus pagamentos
       </button>
     </div>
+
+    <div class="subtitle">
+      <h2>Pagamentos</h2>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mês</mat-label>
+      <mat-select [(ngModel)]="mesAno" name="local">
+        <mat-option *ngFor="let mesAno of mesAnoLista" [value]="mesAno">
+          {{mesAno}}
+        </mat-option>
+      </mat-select>
+      <mat-hint>Selecione o mês para filtrar</mat-hint>
+    </mat-form-field>
+
+    <mat-accordion class="accordion">
+      <mat-expansion-panel *ngFor="let local of localTreinoLista">
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{ local.nome }} </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div>
+          <card-pagamento
+            *ngFor="
+              let pagamento of filterPagamentosPorLocalTreino(mesAno, local, pagamentos)
+            "
+            [pagamento]="pagamento"
+          ></card-pagamento>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>
