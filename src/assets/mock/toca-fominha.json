@@ -5,7 +5,7 @@
   "endpointPrefix": "",
   "latency": 300,
   "port": 3001,
-  "hostname": "192.168.1.4",
+  "hostname": "192.168.1.8",
   "routes": [
     {
       "uuid": "38ae8ebf-5631-486b-bf83-d0675b6a2bc9",

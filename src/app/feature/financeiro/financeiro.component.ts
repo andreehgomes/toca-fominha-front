@@ -39,6 +39,7 @@ export class FinanceiroComponent implements OnInit {
     this.pagamentoService.getListPayment().subscribe((pay) => {
       for (let pagamento in pay) {
         this.pagamentos.push(pay[pagamento].payload.val());
+        console.log('lista pagamentos: ', this.pagamentos);
         if (
           this.mesAnoLista.length == 0 ||
           !this.mesAnoLista.find(

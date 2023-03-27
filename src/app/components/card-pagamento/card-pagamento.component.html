@@ -1,14 +1,17 @@
 <div class="content-card">
     <mat-card>
         <div class="body-card">
-            <div class="column column-day">
-            </div>
             <div class="column column-detail">
-                <p class="p-valor">Nome: <strong>{{pagamento.nomePagador}}</strong></p>
-                <p class="p-valor">Data: <strong>{{pagamento.dataPagamento}}</strong></p>
-                <p class="p-valor">Comprovante: <strong>{{pagamento.nomeComprovante}}</strong></p>
+                <p>Nome: <strong>{{pagamento.nomePagador}}</strong></p>
+                <p>Data: <strong>{{pagamento.dataPagamento}}</strong></p>
+                <!-- <p>Comprovante: <strong>{{pagamento.nomeComprovante}}</strong></p> -->
                 <hr>
                 <p>Valor: <strong>{{pagamento.valor | currency: 'BRL'}}</strong></p>
+            </div>
+            <div class="column column-day">
+                <button mat-mini-fab color="primary">
+                    <a style="color: white;" href="{{pagamento.url}}"><mat-icon>download</mat-icon></a>
+                </button>
             </div>
         </div>
     </mat-card>
