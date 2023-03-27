@@ -15,4 +15,8 @@ export class CardPagamentoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  print(texto: string){
+    console.log('teste: ',texto);
+  }
+
 }

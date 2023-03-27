@@ -10,7 +10,7 @@
                 <p>{{pagamento.tipo}}: <strong>{{pagamento.valor | currency: 'BRL'}}</strong></p>
             </div>
             <div class="column column-day">
-                <button mat-mini-fab color="primary">
+                <button mat-mini-fab color="primary" (click)="print(pagamento.url)">
                     <a style="color: white;" href="{{pagamento.url}}"><mat-icon>download</mat-icon></a>
                 </button>
             </div>
