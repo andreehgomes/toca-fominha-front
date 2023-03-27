@@ -75,6 +75,7 @@ export class FinanceiroComponent implements OnInit {
     this.localTreinoService.getListaLocalTreino().subscribe((localTreino) => {
       for (let local in localTreino) {
         this.localTreinoLista.push(localTreino[local].payload.val());
+        this.localTreinoService.behaviorLocalTreino.next(this.localTreinoLista);
       }
     });
   }

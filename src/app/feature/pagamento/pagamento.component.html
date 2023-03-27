@@ -40,6 +40,17 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Mensalidade / diária</mat-label>
+        <mat-select formControlName="tipo" name="tipo">
+          <mat-option value="Mensalidade">
+            Mensalidade
+          </mat-option>
+          <mat-option value="Diária">
+            Diária
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <input-moeda
         matInput
         changeValue

@@ -45,7 +45,8 @@ export class PagamentoComponent implements OnInit, OnDestroy {
     valor: new FormControl(null, Validators.required),
     data: new FormControl(moment()),
     file: new FormControl(null, Validators.required),
-    local: new FormControl(null, Validators.required)
+    local: new FormControl(null, Validators.required),
+    tipo: new FormControl(null, Validators.required),
   });
 
   ngOnInit(): void {
@@ -61,21 +62,24 @@ export class PagamentoComponent implements OnInit, OnDestroy {
     const fileUpload = this.selectedFiles.item(0);
     this.selectedFiles = undefined;
     this.currentFileUpload = new FileUploadModel(fileUpload);
-    const { valor, data, file, local } = this.formControlPagamento.controls;
+    const { valor, data, file, local, tipo } = this.formControlPagamento.controls;
     const pagamento: PaymentModel = {
       valor: valor.value,
       dataPagamento: this.datePipe.transform(data.value, 'dd/MM/yyyy'),
       nomeComprovante: file.value,
       uidPagador: this.usuario.uid,
       nomePagador: this.usuario.nome,
-      local: local.value['nome']
+      local: local.value['nome'],
+      tipo: tipo.value
     };
-    this.subscription = this.pagamentoService.insertNewPayment(pagamento, this.currentFileUpload).subscribe((payment) => {
-      this.pagamentoService.responseInsertNewPayment.subscribe((mensagem) => {
-        this.mensagemPagamento = mensagem;
-        this.zerarForm();
+    this.subscription = this.pagamentoService
+      .insertNewPayment(pagamento, this.currentFileUpload)
+      .subscribe((payment) => {
+        this.pagamentoService.responseInsertNewPayment.subscribe((mensagem) => {
+          this.mensagemPagamento = mensagem;
+          this.zerarForm();
+        });
       });
-    });
     this.subscription.unsubscribe();
   }
 
@@ -89,7 +93,8 @@ export class PagamentoComponent implements OnInit, OnDestroy {
       valor: new FormControl(null, Validators.required),
       data: new FormControl(moment()),
       file: new FormControl(null, Validators.required),
-      local: new FormControl(null, Validators.required)
+      local: new FormControl(null, Validators.required),
+      tipo: new FormControl(null, Validators.required),
     });
   }
 
@@ -97,12 +102,14 @@ export class PagamentoComponent implements OnInit, OnDestroy {
     this.selectedFiles = event.target.files;
   }
 
-  getListaLocalTreino(){
-    this.subscriptionLocalTreino = this.localTreinoService.getListaLocalTreino().subscribe((lista) => {
-      for(let list in lista){
-        this.listaLocalTreino.push(lista[list].payload.val());
-        console.log(this.listaLocalTreino);
-      }
-    })
+  getListaLocalTreino() {
+    this.subscriptionLocalTreino = this.localTreinoService
+      .getListaLocalTreino()
+      .subscribe((lista) => {
+        for (let list in lista) {
+          this.listaLocalTreino.push(lista[list].payload.val());
+          console.log(this.listaLocalTreino);
+        }
+      });
   }
 }

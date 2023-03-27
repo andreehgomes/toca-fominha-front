@@ -12,6 +12,8 @@ import { LocalTreino } from 'src/app/shared/model/local-treino';
 export class NewLocalTreinoService {
   behaviorMensagemNewLocal: BehaviorSubject<AlertaModel> =
     new BehaviorSubject<AlertaModel>(null);
+  behaviorLocalTreino: BehaviorSubject<Array<LocalTreino>> =
+    new BehaviorSubject<Array<LocalTreino>>(null);
 
   private path: string = 'local_treino';
 
@@ -27,22 +29,25 @@ export class NewLocalTreinoService {
       .push(local)
       .then((local) => {
         this.behaviorMensagemNewLocal.next({
-        codigo: '200',
-        tipo: AlertasType.SUCESSO,
-        mensagem: 'Feito'
-        })
+          codigo: '200',
+          tipo: AlertasType.SUCESSO,
+          mensagem: 'Feito',
+        });
         this.loader.closeDialog();
-      }).catch((error) => {
+      })
+      .catch((error) => {
         this.behaviorMensagemNewLocal.next({
           codigo: '500',
           tipo: AlertasType.ERRO,
-          mensagem: 'Opa, deu ruim, tente novamente mais tarde!'
-        })
+          mensagem: 'Opa, deu ruim, tente novamente mais tarde!',
+        });
         this.loader.closeDialog();
       });
   }
 
-  getListaLocalTreino(): Observable<any>{
-    return this.angularFireDataBase.list(this.path, res => res.orderByChild('nome')).snapshotChanges();
+  getListaLocalTreino(): Observable<any> {
+    return this.angularFireDataBase
+      .list(this.path, (res) => res.orderByChild('nome'))
+      .snapshotChanges();
   }
 }

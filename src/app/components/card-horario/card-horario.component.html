@@ -2,18 +2,17 @@
     <mat-card>
         <div class="body-card">
             <div class="column column-day">
-                <h3>{{horario.dia_semana}}</h3>
             </div>
             <div class="column column-detail">
-                <p>Time: <strong>{{horario.equipe.nome}}</strong></p>
-                <p>Horário: <strong>{{horario.horario_inicio}} às {{horario.horario_fim}}</strong></p>
-                <p>Local: <strong>{{horario.local}}</strong></p>
-                <hr>
+                <p>Local: <strong>{{local.nome}}</strong></p>
+                <p>Diária: <strong>{{local.diaria | currency: 'BRL'}}</strong></p>
+                <p>Mensalidade: <strong>{{local.mensalidade | currency: 'BRL'}}</strong></p>
+                <!-- <hr>
                 <div class="valores">
                     <p class="p-valor">Horário:{{horario.valor_horario | currency: 'BRL'}}</p>
                     <p class="p-valor">Pagamento:{{horario.valor_pagamento | currency: 'BRL'}}</p>
                     <p class="p-valor">Diária:{{horario.valor_diaria | currency: 'BRL'}}</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </mat-card>

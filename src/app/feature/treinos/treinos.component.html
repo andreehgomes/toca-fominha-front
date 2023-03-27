@@ -9,6 +9,9 @@
           Adicionar local de treino
         </button>
       </div>
+      <div *ngFor="let local of listaLocalTreino" class="lista-local">
+        <card-horario [local]="local"></card-horario>
+      </div>
     </div>
   </div>
   

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TreinosComponent } from './treinos.component';
 import { MaterialModule } from 'src/app/material.module';
 import { EmConstrucaoModule } from '../em-construcao/em-construcao.module';
+import { CardHorarioModule } from 'src/app/components/card-horario/card-horario.module';
 
 
 
@@ -13,7 +14,7 @@ import { EmConstrucaoModule } from '../em-construcao/em-construcao.module';
   imports: [
     CommonModule,
     MaterialModule,
-    EmConstrucaoModule
+    CardHorarioModule
   ],
   exports: [
     TreinosComponent
