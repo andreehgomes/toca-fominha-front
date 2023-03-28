@@ -37,6 +37,7 @@ export class FinanceiroComponent implements OnInit {
 
   getListPayment() {
     this.pagamentoService.getListPayment().subscribe((pay) => {
+      this.pagamentos = [];
       for (let pagamento in pay) {
         this.pagamentos.push(pay[pagamento].payload.val());
         console.log('lista pagamentos: ', this.pagamentos);
