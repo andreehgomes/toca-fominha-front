@@ -32,10 +32,6 @@
   justify-content: center;
 }
 
-.botao :last-child {
-  margin-top: 5px;
-}
-
 .accordion {
   width: 100%;
   display: flex;
@@ -67,4 +63,17 @@ mat-panel-description {
   justify-content: end;
   margin-top: 0 !important;
   color: #ebb400 !important;
+}
+
+.quantidades {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-right: 3px;
+}
+
+.p-valor {
+  font-size: 10px;
+  margin: auto !important;
 }

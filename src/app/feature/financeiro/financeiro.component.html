@@ -32,6 +32,12 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <div>
+          <hr>
+          <div class="quantidades">
+            <p class="p-valor">Mensalidades: <strong>{{getNumeroDePagantes(tipoPagamento.MENSALIDADE, mesAno, local, pagamentos)}}</strong></p>
+            <p class="p-valor">Diárias: <strong>{{getNumeroDePagantes(tipoPagamento.DIARIA, mesAno, local, pagamentos)}}</strong></p>
+          </div>
+          <hr>
           <card-pagamento
             *ngFor="
               let pagamento of filterPagamentosPorLocalTreino(mesAno, local, pagamentos)

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { RouterEnum } from 'src/app/core/router/router.enum';
 import { RouterService } from 'src/app/core/router/router.service';
 import { LocalTreino } from 'src/app/shared/model/local-treino';
+import { TipoPagamento } from 'src/app/shared/model/tipo-pagamento.enum';
 import { NewLocalTreinoService } from '../new-local-treino/shared/new-local-treino.service';
 import { PaymentModel } from '../pagamento/shared/model/payment.model';
 import { PagamentoService } from '../pagamento/shared/service/pagamento.service';
@@ -23,6 +24,7 @@ export class FinanceiroComponent implements OnInit, OnDestroy {
   valorPagoMesAno: number;
   mesAno: string;
   panelOpenState = false;
+  tipoPagamento = TipoPagamento;
 
   constructor(
     private router: RouterService,
@@ -130,5 +132,25 @@ export class FinanceiroComponent implements OnInit, OnDestroy {
       }
     }
     return valor;
+  }
+
+  getNumeroDePagantes(
+    tipo: string,
+    mesAno: string,
+    localTreino: LocalTreino,
+    pagamentos: Array<PaymentModel>
+  ): number {
+    let pagantes: number = 0;
+
+    for (let pagamento in pagamentos) {
+      if (
+        pagamentos[pagamento].local == localTreino.nome &&
+        this.retornarMesAno(pagamentos[pagamento].dataPagamento) == mesAno &&
+        pagamentos[pagamento].tipo == tipo
+      ) {
+        pagantes++;
+      }
+    }
+    return pagantes;
   }
 }
