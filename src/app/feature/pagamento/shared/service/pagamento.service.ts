@@ -36,7 +36,7 @@ export class PagamentoService {
           this.responseInsertNewPayment.next({
             tipo: AlertasType.SUCESSO,
             codigo: '200',
-            mensagem: 'Pamento inserido com sucesso!!!',
+            mensagem: 'Pagamento inserido com sucesso!!!',
           });
         }
       },
