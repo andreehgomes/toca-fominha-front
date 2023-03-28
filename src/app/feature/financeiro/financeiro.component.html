@@ -8,14 +8,6 @@
       >
         Lançar meu pagamento
       </button>
-      <!-- <button
-        mat-stroked-button
-        color="primary"
-        (click)="goTo(route.PAGAMENTO)"
-      >
-        Meus pagamentos
-      </button>
-    </div> -->
 
     <div class="subtitle">
       <h2>Pagamentos</h2>
@@ -35,6 +27,9 @@
       <mat-expansion-panel *ngFor="let local of localTreinoLista">
         <mat-expansion-panel-header>
           <mat-panel-title> {{ local.nome }} </mat-panel-title>
+          <mat-panel-description *ngIf="mesAno">
+            Total: {{getValorPagoMesAno(mesAno, local, pagamentos) | currency: 'BRL'}}
+          </mat-panel-description>
         </mat-expansion-panel-header>
         <div>
           <card-pagamento

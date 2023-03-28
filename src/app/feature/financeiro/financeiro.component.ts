@@ -14,14 +14,16 @@ import { PagamentoService } from '../pagamento/shared/service/pagamento.service'
   styleUrls: ['./financeiro.component.scss'],
 })
 export class FinanceiroComponent implements OnInit, OnDestroy {
+  route = RouterEnum;
   subscriptionPagamento: Subscription;
   subscriptionLocalTreino: Subscription;
+  localTreinoLista: Array<LocalTreino> = [];
   pagamentos: Array<PaymentModel> = [];
   mesAnoLista: Array<string> = [];
+  valorPagoMesAno: number;
   mesAno: string;
-  localTreinoLista: Array<LocalTreino> = [];
-  route = RouterEnum;
   panelOpenState = false;
+
   constructor(
     private router: RouterService,
     private pagamentoService: PagamentoService,
@@ -43,29 +45,31 @@ export class FinanceiroComponent implements OnInit, OnDestroy {
   }
 
   getListPayment() {
-    this.subscriptionPagamento = this.pagamentoService.getListPayment().subscribe((pay) => {
-      this.pagamentos = [];
-      for (let pagamento in pay) {
-        this.pagamentos.push(pay[pagamento].payload.val());
-        console.log('lista pagamentos: ', this.pagamentos);
-        if (
-          this.mesAnoLista.length == 0 ||
-          !this.mesAnoLista.find(
-            (mesAno) =>
-              mesAno ===
+    this.subscriptionPagamento = this.pagamentoService
+      .getListPayment()
+      .subscribe((pay) => {
+        this.pagamentos = [];
+        for (let pagamento in pay) {
+          this.pagamentos.push(pay[pagamento].payload.val());
+          console.log('lista pagamentos: ', this.pagamentos);
+          if (
+            this.mesAnoLista.length == 0 ||
+            !this.mesAnoLista.find(
+              (mesAno) =>
+                mesAno ===
+                this.retornarMesAno(
+                  pay[pagamento].payload.child('dataPagamento').val()
+                )
+            )
+          ) {
+            this.mesAnoLista.push(
               this.retornarMesAno(
                 pay[pagamento].payload.child('dataPagamento').val()
               )
-          )
-        ) {
-          this.mesAnoLista.push(
-            this.retornarMesAno(
-              pay[pagamento].payload.child('dataPagamento').val()
-            )
-          );
+            );
+          }
         }
-      }
-    });
+      });
   }
 
   retornarMesAno(data: string) {
@@ -80,12 +84,16 @@ export class FinanceiroComponent implements OnInit, OnDestroy {
   }
 
   getListaLocalTreino() {
-    this.subscriptionLocalTreino = this.localTreinoService.getListaLocalTreino().subscribe((localTreino) => {
-      for (let local in localTreino) {
-        this.localTreinoLista.push(localTreino[local].payload.val());
-        this.localTreinoService.behaviorLocalTreino.next(this.localTreinoLista);
-      }
-    });
+    this.subscriptionLocalTreino = this.localTreinoService
+      .getListaLocalTreino()
+      .subscribe((localTreino) => {
+        for (let local in localTreino) {
+          this.localTreinoLista.push(localTreino[local].payload.val());
+          this.localTreinoService.behaviorLocalTreino.next(
+            this.localTreinoLista
+          );
+        }
+      });
   }
 
   filterPagamentosPorLocalTreino(
@@ -95,11 +103,32 @@ export class FinanceiroComponent implements OnInit, OnDestroy {
   ): Array<PaymentModel> {
     let listaPagamentos: Array<PaymentModel> = [];
     for (let pagamento in pagamentos) {
-      if (pagamentos[pagamento].local == localTreino.nome && this.retornarMesAno(pagamentos[pagamento].dataPagamento) == mesAno) {
+      if (
+        pagamentos[pagamento].local == localTreino.nome &&
+        this.retornarMesAno(pagamentos[pagamento].dataPagamento) == mesAno
+      ) {
         listaPagamentos.push(pagamentos[pagamento]);
       }
     }
 
     return listaPagamentos;
+  }
+
+  getValorPagoMesAno(
+    mesAno: string,
+    localTreino: LocalTreino,
+    pagamentos: Array<PaymentModel>
+  ): number {
+    let valor: number = 0;
+
+    for (let pagamento in pagamentos) {
+      if (
+        pagamentos[pagamento].local == localTreino.nome &&
+        this.retornarMesAno(pagamentos[pagamento].dataPagamento) == mesAno
+      ) {
+        valor = valor + Number(pagamentos[pagamento].valor);
+      }
+    }
+    return valor;
   }
 }
