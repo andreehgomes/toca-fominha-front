@@ -53,7 +53,6 @@ export class FinanceiroComponent implements OnInit, OnDestroy {
         this.pagamentos = [];
         for (let pagamento in pay) {
           this.pagamentos.push(pay[pagamento].payload.val());
-          console.log('lista pagamentos: ', this.pagamentos);
           if (
             this.mesAnoLista.length == 0 ||
             !this.mesAnoLista.find(

@@ -58,7 +58,6 @@ export class LoginService {
         );
       })
       .catch((error) => {
-        console.log('error: ', error)
         this.behaviorLoginMensagem.next({
           tipo: AlertasType.ERRO,
           codigo: '403',

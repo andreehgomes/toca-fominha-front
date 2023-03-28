@@ -25,13 +25,11 @@ export class NewPasswordService {
   ) {}
 
   async changePass(pass: string) {
-    console.log('NEW PASS: ', pass);
     this.loader.openDialog();
     this.angularFireAuth.currentUser.then((user) => {
       user
         .updatePassword(pass)
         .then((newPass) => {
-          console.log('newPass: ', newPass)
           localStorage.removeItem('token');
           this.behaviorMensagemNewPass.next({
             tipo: AlertasType.SUCESSO,

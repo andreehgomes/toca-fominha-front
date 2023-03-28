@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.formControlUsuario.controls['senhaFormGroup'].setValue(
         usuario.senha
       );
-      console.log(usuario)
       this.autenticarWithEmail({
         email: usuario.email,
         senha: usuario.senha,

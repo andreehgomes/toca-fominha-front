@@ -29,8 +29,6 @@ export class ConfigFirebaseService {
   constructor() {}
 
   getConfigFireBase(): FirebaseOptions {
-    console.log('TESTE: ', environment.production)
-    console.log('CONFIG: ', this.configFireBaseLocalPipeLineTeste);
     return environment.production
       ? this.configFireBasePipeLineProd
       : this.configFireBaseLocalPipeLineTeste;

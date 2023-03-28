@@ -18,7 +18,6 @@ export class GlobalErrorHandler implements ErrorHandler {
         console.log('Handler Error Object: ', error);
         mensagemTecnica = error.message;
       }
-      console.log('Handler Error: ', error);
       this.pageErrorService.goToError(mensagem1, mensagem2, mensagemTecnica);
       this.laoder.closeDialog();
     }, 300);

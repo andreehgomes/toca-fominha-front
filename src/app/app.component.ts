@@ -33,8 +33,6 @@ export class AppComponent implements OnInit {
   onLoad(){
     this.onLoadService.onLoadBehavior.subscribe((load) => {
       this.onLoadStatus = load ? load : false;
-      console.log('load: ', load)
-      console.log('onLoad: ', this.onLoadStatus);
     })
   }
 }

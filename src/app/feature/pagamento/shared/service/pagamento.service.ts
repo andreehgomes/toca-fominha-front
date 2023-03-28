@@ -30,7 +30,6 @@ export class PagamentoService {
     // this.angularFireDataBase.list('payment').push(payment);
     this.fileService.pushFileToStorage(file, this.path, payment).subscribe(
       (percentage) => {
-        console.log('PORCENT: ', Math.round(percentage));
         if (Math.round(percentage) == 100) {
           this.loader.closeDialog();
           this.responseInsertNewPayment.next({

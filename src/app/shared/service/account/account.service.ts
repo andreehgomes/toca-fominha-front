@@ -25,7 +25,6 @@ export class AccountService {
 
   insertNewAccountEmail(newAccount: NewAccount): Observable<any> {
     this.loader.openDialog();
-    console.log(newAccount);
     this.angularFireAuth
       .createUserWithEmailAndPassword(newAccount.email, newAccount.senha)
       .then((user) => {

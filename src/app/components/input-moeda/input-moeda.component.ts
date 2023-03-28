@@ -148,8 +148,6 @@ export class InputMoedaComponent implements ControlValueAccessor, OnChanges {
     differenceCalcEnd,
     blockedBackspaceLength
   ) {
-    console.log(differenceCalcEnd);
-    console.log(blockedBackspaceLength);
     if (
       differenceCalcStart < blockedBackspaceLength ||
       differenceCalcEnd < blockedBackspaceLength

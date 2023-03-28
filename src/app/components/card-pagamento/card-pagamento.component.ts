@@ -16,7 +16,6 @@ export class CardPagamentoComponent implements OnInit {
   }
 
   print(texto: string){
-    console.log('teste: ',texto);
   }
 
 }

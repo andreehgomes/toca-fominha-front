@@ -108,7 +108,6 @@ export class PagamentoComponent implements OnInit, OnDestroy {
       .subscribe((lista) => {
         for (let list in lista) {
           this.listaLocalTreino.push(lista[list].payload.val());
-          console.log(this.listaLocalTreino);
         }
       });
   }

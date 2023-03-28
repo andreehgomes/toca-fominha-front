@@ -62,7 +62,6 @@ export class NewAccountComponent implements OnInit {
     this.accountService
       .insertNewAccountEmail(this.newAccount)
       .subscribe((res) => {
-        console.log('conta: ', this.newAccount);
         this.accountService.responseInsertNewAccount.subscribe((mensagem) => {
           this.mensagemRespostaCadastro = mensagem;
 

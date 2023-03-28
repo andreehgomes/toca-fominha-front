@@ -30,7 +30,6 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
             throw error;
         }),
         finalize(() => {
-            console.log('Interceptor: ', req)
             this.loader.closeDialog();
         })
     )

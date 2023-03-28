@@ -34,9 +34,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   openCloseSideNav(){
-    // console.log('Antes: ', this.openSideNav);
     this.openSideNav = !this.openSideNav;
-    // console.log('Depois: ', this.openSideNav);
   }
 
   logout(){
