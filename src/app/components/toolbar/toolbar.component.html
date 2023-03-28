@@ -1,5 +1,5 @@
 <div class="header">
-  <mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav-container class="sidenav-container" autosize *ngIf="state">
     <mat-sidenav
       #sidenav
       class="example-sidenav"
@@ -23,11 +23,11 @@
     </mat-sidenav>
   </mat-sidenav-container>
 
-  <div class="fechaMenu" *ngIf="openSideNav" (click)="openCloseSideNav()">
-  </div>
+  <div class="fechaMenu" *ngIf="openSideNav" (click)="openCloseSideNav()"></div>
 
   <mat-toolbar>
     <button
+      [disabled]="!state"
       mat-icon-button
       class="example-icon"
       aria-label="Example icon-button with menu icon"
@@ -36,8 +36,8 @@
       <mat-icon>menu</mat-icon>
     </button>
     <div class="saudacao-usuario">
-        <p class="nome">Eae, {{usuario?.nome}}!!</p>
-        <p>{{ usuario?.time }}</p>
+      <p class="nome">Eae, {{ usuario?.nome }}!!</p>
+      <p>{{ usuario?.time }}</p>
     </div>
     <span class="spacer"></span>
   </mat-toolbar>

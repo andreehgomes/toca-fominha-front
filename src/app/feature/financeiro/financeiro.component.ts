@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { RouterEnum } from 'src/app/core/router/router.enum';
 import { RouterService } from 'src/app/core/router/router.service';
 import { LocalTreino } from 'src/app/shared/model/local-treino';
@@ -12,7 +13,9 @@ import { PagamentoService } from '../pagamento/shared/service/pagamento.service'
   templateUrl: './financeiro.component.html',
   styleUrls: ['./financeiro.component.scss'],
 })
-export class FinanceiroComponent implements OnInit {
+export class FinanceiroComponent implements OnInit, OnDestroy {
+  subscriptionPagamento: Subscription;
+  subscriptionLocalTreino: Subscription;
   pagamentos: Array<PaymentModel> = [];
   mesAnoLista: Array<string> = [];
   mesAno: string;
@@ -28,6 +31,10 @@ export class FinanceiroComponent implements OnInit {
     this.getListPayment();
     this.getListaLocalTreino();
   }
+  ngOnDestroy(): void {
+    this.subscriptionPagamento.unsubscribe();
+    this.subscriptionLocalTreino.unsubscribe();
+  }
 
   ngOnInit(): void {}
 
@@ -36,7 +43,7 @@ export class FinanceiroComponent implements OnInit {
   }
 
   getListPayment() {
-    this.pagamentoService.getListPayment().subscribe((pay) => {
+    this.subscriptionPagamento = this.pagamentoService.getListPayment().subscribe((pay) => {
       this.pagamentos = [];
       for (let pagamento in pay) {
         this.pagamentos.push(pay[pagamento].payload.val());
@@ -73,7 +80,7 @@ export class FinanceiroComponent implements OnInit {
   }
 
   getListaLocalTreino() {
-    this.localTreinoService.getListaLocalTreino().subscribe((localTreino) => {
+    this.subscriptionLocalTreino = this.localTreinoService.getListaLocalTreino().subscribe((localTreino) => {
       for (let local in localTreino) {
         this.localTreinoLista.push(localTreino[local].payload.val());
         this.localTreinoService.behaviorLocalTreino.next(this.localTreinoLista);

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ResponseLogin } from 'src/app/feature/login/shared/model/response-login';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InitAuthService {
 
-  constructor() { }
+  constructor(private fireAuth: AngularFireAuth) { }
 
   getToken() {
     const login = localStorage.getItem('token');    
@@ -30,6 +31,10 @@ export class InitAuthService {
       return JSON.parse(decodeURIComponent(encodeURIComponent(window.atob(auth['auth']))))
     }
     return;
+  }
+
+  logout(){
+    this.fireAuth.signOut();
   }
 
 }
