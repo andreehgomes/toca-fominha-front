@@ -4,4 +4,6 @@ export interface AccountModel {
     celular: string;
     data_nascimento: string;
     senha: string;
+    email?: string;
+    uid?: string;
 }

@@ -152,4 +152,9 @@ export class FinanceiroComponent implements OnInit, OnDestroy {
     }
     return pagantes;
   }
+
+  delete(pagamento: PaymentModel){
+    console.log("delete: ", pagamento);
+    this.pagamentoService.deletePayment(pagamento);
+  }
 }

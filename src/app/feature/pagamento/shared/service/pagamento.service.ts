@@ -15,6 +15,7 @@ import { PaymentModel } from '../model/payment.model';
 export class PagamentoService {
   public responseInsertNewPayment = new BehaviorSubject<AlertaModel>(null);
   private path: string = 'payment';
+  private subscription: Subscription;
 
   constructor(
     private angularFireDataBase: AngularFireDatabase,
@@ -50,5 +51,27 @@ export class PagamentoService {
     return this.angularFireDataBase
       .list(this.path, (ref) => ref.orderByChild('uid'))
       .snapshotChanges();
+  }
+
+  deletePayment(payment: PaymentModel) {
+    this.loader.openDialog();
+    this.subscription = this.angularFireDataBase
+      .list(this.path, (ref) => ref.orderByChild('url').equalTo(payment.url))
+      .snapshotChanges()
+      .subscribe((pag) => {
+        this.fileService.deleteFileStorage(
+          pag[0].payload.child('nomeComprovante').val()
+        );
+        this.angularFireDataBase
+          .object(`${this.path}/${pag[0].key}`)
+          .remove()
+          .catch((error) => {
+            throw new Error(
+              'Relaxa, por algum motivo seu comprovante nem estava salvo mais.'
+            );
+          });
+        this.subscription.unsubscribe();
+        this.loader.closeDialog();
+      });
   }
 }

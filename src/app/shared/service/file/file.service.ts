@@ -17,31 +17,45 @@ export class FileService {
     private storage: AngularFireStorage
   ) {}
 
-  pushFileToStorage(fileUpload: FileUploadModel, pathSaveData: string, payment: PaymentModel): Observable<number> {
-    const filePath = `${this.basePath}/${fileUpload.file.name}`;
+  pushFileToStorage(
+    fileUpload: FileUploadModel,
+    pathSaveData: string,
+    payment: PaymentModel
+  ): Observable<number> {
+    const fileName = `${this.returnRandonHash()}-${fileUpload.file.name}`; 
+    const filePath = `${this.basePath}/${fileName}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
 
-    uploadTask.snapshotChanges().pipe(
-      finalize(() => {
-        storageRef.getDownloadURL().subscribe(downloadURL => {
-          payment.url = downloadURL;
-          payment.nomeComprovante = fileUpload.file.name;
-          this.saveFileDataPayment(pathSaveData, payment);
-        });
-      })
-    ).subscribe();
+    uploadTask
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          storageRef.getDownloadURL().subscribe((downloadURL) => {
+            payment.url = downloadURL;
+            payment.nomeComprovante = fileName;
+            this.saveFileDataPayment(pathSaveData, payment);
+          });
+        })
+      )
+      .subscribe();
 
     return uploadTask.percentageChanges();
   }
 
-  private saveFileDataPayment(pathSaveData: string, payment: PaymentModel): void {
+  returnRandonHash():string{
+    return Math.floor(Date.now() * Math.random()).toString(36);
+  }
+
+  private saveFileDataPayment(
+    pathSaveData: string,
+    payment: PaymentModel
+  ): void {
     this.db.list(pathSaveData).push(payment);
   }
 
   getFiles(numberItems): AngularFireList<FileUploadModel> {
-    return this.db.list(this.basePath, ref =>
-      ref.limitToLast(numberItems));
+    return this.db.list(this.basePath, (ref) => ref.limitToLast(numberItems));
   }
 
   deleteFile(fileUpload: FileUploadModel): void {
@@ -49,15 +63,15 @@ export class FileService {
       .then(() => {
         this.deleteFileStorage(fileUpload.name);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
 
   private deleteFileDatabase(key: string): Promise<void> {
     return this.db.list(this.basePath).remove(key);
   }
 
-  private deleteFileStorage(name: string): void {
+  deleteFileStorage(nome: string): void {
     const storageRef = this.storage.ref(this.basePath);
-    storageRef.child(name).delete();
+    storageRef.child(nome).delete();
   }
 }

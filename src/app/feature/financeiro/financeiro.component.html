@@ -43,6 +43,7 @@
               let pagamento of filterPagamentosPorLocalTreino(mesAno, local, pagamentos)
             "
             [pagamento]="pagamento"
+            (delete)="delete($event)"
           ></card-pagamento>
         </div>
       </mat-expansion-panel>

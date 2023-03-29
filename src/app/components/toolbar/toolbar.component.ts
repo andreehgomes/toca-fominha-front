@@ -12,6 +12,7 @@ import { AuthStateService } from 'src/app/shared/service/authState/auth-state.se
 export class ToolbarComponent implements OnInit {
 
   @Input() usuario?: any;
+  @Input() labelComponente?: string;
   openSideNav = false;
   routes = RouterEnum;
   state: any = null;
